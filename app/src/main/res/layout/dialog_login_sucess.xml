@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/crossIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/cross_ic"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/tickImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/tick_ic"
+        android:layout_marginTop="15dp"
+        style="@style/RoundedImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_successfully"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/okayBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:text="@string/okay"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

@@ -1,0 +1,158 @@
+package com.bussiness.seniorcareapp.ui.fragment
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
+import com.bussiness.seniorcareapp.R
+import com.bussiness.seniorcareapp.data.model.BannerData
+import com.bussiness.seniorcareapp.data.model.FtProfileItem
+import com.bussiness.seniorcareapp.data.model.PosterItem
+import com.bussiness.seniorcareapp.databinding.FragmentHomeBinding
+import com.bussiness.seniorcareapp.ui.activity.AuthActivity
+import com.bussiness.seniorcareapp.ui.activity.MainActivity
+import com.bussiness.seniorcareapp.ui.adapter.BannerAdapter
+import com.bussiness.seniorcareapp.ui.adapter.ExFacilitiesAdapter
+import com.bussiness.seniorcareapp.ui.adapter.FtProviderAdapter
+import com.bussiness.seniorcareapp.utils.SessionManager
+import com.google.android.material.tabs.TabLayoutMediator
+
+class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var exploreFacilityAdapter: ExFacilitiesAdapter
+    private lateinit var featuredFacilityAdapter: FtProviderAdapter
+    private var sessionManager: SessionManager? = null
+
+    private val bannerList = listOf(
+        BannerData(R.drawable.banner_bg, "Explore trusted senior living facilities tailored to your needs. Search, compare, and connect effortlessly today!"),
+        BannerData(R.drawable.banner_bg, "Compare top-rated care homes and find the right fit for your loved ones."),
+        BannerData(R.drawable.banner_bg, "Join thousands who trust us for senior living solutions.")
+    )
+
+    private val exploreFacilityList = List(5) {
+        PosterItem(R.drawable.poster, "Assisted Living", "Lorem ipsum dolor sit amet, consectetur adipiscing elit")
+    }
+
+    private val featuredFacilityList = List(2) {
+        FtProfileItem(
+            R.drawable.image_ic_fet,
+            "Mathew John",
+            "Experienced caregiver with passion for memory care.",
+            "City, State, Country",
+            "Assisted Living, Memory Care",
+            "www.abc.com"
+        )
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        sessionManager = SessionManager(requireContext())
+
+        if (sessionManager?.isLoggedIn() == false) {                 // skip login
+            binding.fpRecyclerView.visibility = View.GONE
+            binding.blurImageLogin.visibility = View.VISIBLE
+            binding.seeAllFacilities.visibility = View.GONE
+            binding.credits.visibility = View.VISIBLE
+        } else {                                                     // on login
+            binding.fpRecyclerView.visibility = View.VISIBLE
+            binding.blurImageLogin.visibility = View.GONE
+            binding.seeAllFacilities.visibility = View.VISIBLE
+            binding.credits.visibility = View.GONE
+        }
+
+        setupBanner()
+        setupRecyclerViews()
+        clickListeners()
+
+    }
+
+    private fun setupBanner() {
+        val viewPager = binding.bannerViewPager
+        val tabIndicator = binding.tabIndicator
+
+        viewPager.adapter = BannerAdapter(bannerList)
+
+        TabLayoutMediator(tabIndicator, viewPager) { tab, _ ->
+            tab.setCustomView(R.layout.custom_tab)
+        }.attach()
+
+        updateTabDots(0) // Set initial selected dot
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                updateTabDots(position)
+            }
+        })
+    }
+
+    private fun setupRecyclerViews() {
+        // Horizontal Explore Facilities
+        exploreFacilityAdapter = ExFacilitiesAdapter(exploreFacilityList)
+        binding.exFacilitiesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = exploreFacilityAdapter
+        }
+
+        // Vertical Featured Facilities
+        featuredFacilityAdapter = FtProviderAdapter(
+            featuredFacilityList,
+            onViewProfileClick = {
+                Toast.makeText(requireContext(), "View Profile Clicked", Toast.LENGTH_SHORT).show()
+            },
+            onCallClick = {
+                Toast.makeText(requireContext(), "Call Icon Clicked", Toast.LENGTH_SHORT).show()
+            }
+        )
+        binding.fpRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = featuredFacilityAdapter
+        }
+    }
+
+    private fun clickListeners() {
+        binding.apply {
+            ivMenu.setOnClickListener  { (activity as? MainActivity)?.openDrawer() }
+            arrowIc.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
+            arrowIc1.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
+            btnLoginNow.setOnClickListener { val intent = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(intent)
+            }
+            seeAllFacilities.setOnClickListener { findNavController() .navigate(R.id.facilityListingFragment)}
+        }
+    }
+
+    private fun updateTabDots(selectedPosition: Int) {
+        val tabLayout = binding.tabIndicator
+        for (i in 0 until tabLayout.tabCount) {
+            val tab = tabLayout.getTabAt(i)
+            val imageView = tab?.customView?.findViewById<ImageView>(R.id.bannerTabDot)
+            imageView?.setImageResource(
+                if (i == selectedPosition) R.drawable.banner_tab else R.drawable.non_selected_banner_tab
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

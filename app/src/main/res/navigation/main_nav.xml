@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/compareFacilitiesFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.CompareFacilitiesFragment"
+        android:label="fragment_compare_facilities"
+        tools:layout="@layout/fragment_compare_facilities" />
+    <fragment
+        android:id="@+id/savedFacilitiesFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.SavedFacilitiesFragment"
+        android:label="fragment_saved_facilities"
+        tools:layout="@layout/fragment_saved_facilities" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/subscriptionFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.SubscriptionFragment"
+        android:label="fragment_subscription"
+        tools:layout="@layout/fragment_subscription" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.DeleteAccountFragment"
+        android:label="fragment_delete_account"
+        tools:layout="@layout/fragment_delete_account" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.ServicesFragment"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.FaqFragment"
+        android:label="fragment_faq"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/facilityListingFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.FacilityListingFragment"
+        android:label="fragment_facility_listing"
+        tools:layout="@layout/fragment_facility_listing" />
+    <fragment
+        android:id="@+id/facilityDetailFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.FacilityDetailFragment"
+        android:label="fragment_facility_detail"
+        tools:layout="@layout/fragment_facility_detail" />
+</navigation>

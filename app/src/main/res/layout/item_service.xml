@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/serviceImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shapeAppearance="@style/sharpCornerImage"
+        android:src="@drawable/service"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/senior_living_communities"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/discover_a_variety_of_senior_living_communities_that_offer_a_comfortable_and_engaging_lifestyle"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/descriptionText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/independent_living"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="10dp"
+        android:layout_marginStart="8dp"
+        app:drawableStartCompat="@drawable/baseline_circle_24" />
+
+    <TextView
+        android:id="@+id/descriptionText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/assisted_living"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="10dp"
+        android:layout_marginStart="8dp"
+        app:drawableStartCompat="@drawable/baseline_circle_24"/>
+
+    <TextView
+        android:id="@+id/descriptionText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/memory_care"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="10dp"
+        android:layout_marginStart="8dp"
+        app:drawableStartCompat="@drawable/baseline_circle_24"/>
+
+    <TextView
+        android:id="@+id/descriptionText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continuing_care_retirement_communities"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="10dp"
+        android:layout_marginStart="8dp"
+        app:drawableStartCompat="@drawable/baseline_circle_24"/>
+
+    <TextView
+        android:id="@+id/quest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/find_the_perfect_community_that_matches_your_lifestyle_and_needs"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/purple"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

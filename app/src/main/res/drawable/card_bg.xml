@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="rectangle">-->
+<!--    <corners android:topLeftRadius="50dp" android:topRightRadius="50dp"/>-->
+<!--    <solid android:color="#E6F3F2"/>-->
+<!--    <stroke android:color="@color/purple" android:width="1dp"/>-->
+<!--</shape>-->
+
+<!-- res/drawable/card_bg.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background with full purple stroke -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:topLeftRadius="50dp" android:topRightRadius="50dp" />
+            <solid android:color="#E6F3F2" />
+            <stroke android:color="@color/purple" android:width="1dp" />
+        </shape>
+    </item>
+
+    <!-- White overlay at bottom to hide bottom stroke -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="1dp" />
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</layer-list>
+
+
+
+

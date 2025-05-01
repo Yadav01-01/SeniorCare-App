@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/side_curve.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#5A2A54" /> <!-- This is the purple color -->
+    <corners android:topLeftRadius="0dp"
+        android:topRightRadius="60dp"
+        android:bottomRightRadius="60dp"
+        android:bottomLeftRadius="0dp"/>
+</shape>

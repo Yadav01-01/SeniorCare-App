@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navAboutUs"
+        android:icon="@drawable/about_us_ic"
+        android:title="@string/about_us" />
+
+    <item
+        android:id="@+id/navService"
+        android:icon="@drawable/services_ic"
+        android:title="@string/servicetxt" />
+
+    <item
+        android:id="@+id/navSubscriptionPlans"
+        android:icon="@drawable/subscription_ic"
+        android:title="@string/subscription_plans" />
+
+    <item
+        android:id="@+id/navContactUs"
+        android:icon="@drawable/contact_ic"
+        android:title="@string/contact_us" />
+
+    <item
+        android:id="@+id/navCompareFacility"
+        android:icon="@drawable/vaadin_workplace"
+        android:title="@string/compare_facility" />
+
+    <item
+        android:id="@+id/navAccountPrivacy"
+        android:icon="@drawable/acc_privacy_ic"
+        android:title="@string/privacy_policy" />
+
+    <item
+        android:id="@+id/navFAQ"
+        android:icon="@drawable/faq_ic"
+        android:title="@string/faq" />
+
+    <item
+        android:id="@+id/navLogout"
+        android:icon="@drawable/logout_ic"
+        android:title="@string/logout" />
+
+
+</menu>
