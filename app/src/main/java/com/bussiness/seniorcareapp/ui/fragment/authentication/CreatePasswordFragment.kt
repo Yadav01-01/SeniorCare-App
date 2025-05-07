@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.databinding.FragmentCreatePasswordBinding
+import com.bussiness.seniorcareapp.utils.ErrorMessage
 
 class CreatePasswordFragment : Fragment() {
 
@@ -50,6 +52,12 @@ class CreatePasswordFragment : Fragment() {
                     eyeIcon = eyeIcon
                 )
             }
+
+            btnSubmit.setOnClickListener {
+                if (dataValidation()){
+                    findNavController().navigate(R.id.loginFragment)
+                }
+            }
         }
     }
 
@@ -61,6 +69,37 @@ class CreatePasswordFragment : Fragment() {
         }
         eyeIcon.setImageResource(if (isVisible) R.drawable.eye_ic else R.drawable.close_eye)
         editText.setSelection(editText.text?.length ?: 0)
+    }
+
+    private fun dataValidation() : Boolean {
+        binding.apply {
+            if (edtNewPassword.text.toString().trim().isEmpty()){
+                edtNewPassword.error = ErrorMessage.PASSWORD_ERROR
+                edtNewPassword.requestFocus()
+                return false
+            }
+            if (edtCnfPassword.text.toString().trim().isEmpty()){
+                edtCnfPassword.error = ErrorMessage.PASSWORD_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+            if (edtNewPassword.text.toString().trim() != edtCnfPassword.text.toString().trim()){
+                edtCnfPassword.error = ErrorMessage.PASSWORD_MISMATCH_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+            if (!edtNewPassword.text.toString().trim().matches(Regex(ErrorMessage.PASSWORD_PATTERN))){
+                edtNewPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
+                edtNewPassword.requestFocus()
+                return false
+            }
+            if (!edtCnfPassword.text.toString().trim().matches(Regex(ErrorMessage.PASSWORD_PATTERN))){
+                edtCnfPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+        }
+        return true
     }
 
 

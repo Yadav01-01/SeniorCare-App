@@ -72,6 +72,7 @@ class FacilityListingFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        binding.facilityRecyclerView.isNestedScrollingEnabled = false
         binding.facilityRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             facilityListingAdapter = FacilityListingAdapter(facilityList) { facility ->

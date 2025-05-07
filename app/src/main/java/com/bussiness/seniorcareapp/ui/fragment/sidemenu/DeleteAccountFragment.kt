@@ -54,7 +54,7 @@ class DeleteAccountFragment : Fragment() {
 
     private fun clickListeners() {
         binding.apply {
-            backBtn.setOnClickListener {
+            backIcon.setOnClickListener {
                 findNavController().navigateUp()
             }
         }

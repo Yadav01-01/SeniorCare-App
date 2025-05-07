@@ -17,8 +17,8 @@
         android:layout_gravity="center"
         android:text="@string/compare_text"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
-        android:padding="16dp"
+        android:padding="@dimen/_30sdp"
         android:background="@android:color/transparent" />
 </FrameLayout>

@@ -12,7 +12,7 @@
         android:id="@+id/rll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:src="@drawable/back_ic" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/poppins"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/_15ssp"/>
 
     </RelativeLayout>
 
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/frame_bg"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/rll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@android:color/white"
             android:scrollbars="none">
 
@@ -75,11 +75,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_about_content"
-                        android:paddingTop="20dp"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
                         android:fontFamily="@font/poppins"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_8ssp"
                         android:textColor="@color/black"
                         android:id="@+id/aboutUsContent"/>
 
@@ -87,7 +87,7 @@
                         android:id="@+id/readMoreTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingEnd="20dp"
+                        android:paddingEnd="@dimen/_15sdp"
                         android:paddingStart="0dp"
                         android:text="@string/read_more"
                         android:layout_gravity="end"
@@ -97,8 +97,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/purple"/>
 
                 <LinearLayout
@@ -112,20 +112,20 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_12ssp"
                         android:text="@string/privacy_policy"
-                        android:padding="20dp"
+                        android:padding="@dimen/_15sdp"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_about_content"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
                         android:visibility="gone"
                         android:fontFamily="@font/poppins"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_8ssp"
                         android:textColor="@color/black"
                         android:id="@+id/privacyPolicyContent"/>
 
@@ -135,7 +135,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/purple"/>
 
                 <LinearLayout
@@ -149,20 +149,20 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_12ssp"
                         android:text="@string/terms_conditions"
-                        android:padding="20dp"
+                        android:padding="@dimen/_15sdp"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_about_content"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
                         android:visibility="gone"
                         android:fontFamily="@font/poppins"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_8ssp"
                         android:textColor="@color/black"
                         android:id="@+id/termsConditionContent"/>
 
@@ -170,7 +170,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/purple"/>
                 
                 <com.google.android.material.card.MaterialCardView
@@ -178,10 +178,10 @@
                     android:layout_height="wrap_content"
                     app:strokeColor="#EAEAEA"
                     app:strokeWidth="2dp"
-                    app:cardCornerRadius="7dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
@@ -189,7 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="20dp"
+                        android:padding="@dimen/_12sdp"
                         android:gravity="center_vertical"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
@@ -197,10 +197,10 @@
 
                         <!-- Left Icon -->
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:src="@drawable/delete_icon_vec"
-                            android:layout_marginEnd="16dp" />
+                            android:layout_marginEnd="@dimen/_12sdp" />
 
                         <!-- Title and Description -->
                         <LinearLayout
@@ -215,7 +215,7 @@
                                 android:text="@string/request_to_delete_account"
                                 android:fontFamily="@font/poppins"
                                 android:textStyle="bold"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/_8ssp"
                                 android:textColor="@color/purple" />
 
                             <TextView
@@ -223,41 +223,26 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/request_to_closure_of_your_account"
                                 android:fontFamily="@font/poppins"
-                                android:textSize="11sp"
+                                android:textSize="@dimen/_8ssp"
                                 android:textColor="@color/purple" />
                         </LinearLayout>
 
                         <!-- Right Arrow -->
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
                             android:src="@drawable/arrow_right"
                             android:layout_marginStart="16dp" />
 
                     </LinearLayout>
 
-
-
                 </com.google.android.material.card.MaterialCardView>
-
-
-
-
-
-
-
-
-
-
 
             </LinearLayout>
 
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -49,7 +49,7 @@
     <string name="featured_facilities"><font color="#000000">Featured</font> <font color="#EA5B60">Facilities</font></string>
     <string name="explore_facilities"><font color="#000000">Explore</font> <font color="#EA5B60">Facilities</font></string>
     <string name="feature_provider"><font color="#000000">Featured</font> <font color="#EA5B60">Providers</font></string>
-    <string name="see_all">See all+</string>
+    <string name="see_all"><u>See all+</u></string>
     <string name="facility_name">Facility Name</string>
     <string name="location">Location :</string>
     <string name="location_">Location</string>
@@ -186,4 +186,6 @@
     <string name="healthcare">Healthcare</string>
     <string name="rehabilitation">Rehabilitation</string>
     <string name="pet_friendly">Pet-friendly</string>
+    <string name="verify">Verify</string>
+    <string name="select_facility">Select Facility</string>
 </resources>

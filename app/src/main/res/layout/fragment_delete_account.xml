@@ -12,18 +12,18 @@
         android:id="@+id/rll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/backBtn"
+            android:id="@+id/backIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:src="@drawable/back_ic" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/poppins"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/_15ssp"/>
 
     </RelativeLayout>
 
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/frame_bg"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/rll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,14 +52,14 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/delete_my_account"
                     android:fontFamily="@font/poppins"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/_18ssp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
 
@@ -79,18 +79,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_10ssp"
                     android:text="@string/why_would_you_like_to_delete_your_account"
                     android:textColor="@color/black"/>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    app:cardCornerRadius="10dp"
-                    android:elevation="5dp"
-
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    android:elevation="@dimen/_3sdp"
                     app:strokeColor="#EAEAEA"
                     app:strokeWidth="1dp"
                     app:cardBackgroundColor="@color/white">
@@ -100,8 +99,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/deleteRecyclerView"
                         tools:listitem="@layout/item_delete_feedback"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -117,11 +116,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/please_share_your_feedback_optional"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_8ssp"
                         android:editable="true"
                         android:textColor="@color/black"
                         android:fontFamily="@font/poppins"
-                        android:padding = "10dp"
+                        android:padding = "@dimen/_8sdp"
                         tools:ignore="TextViewEdits" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -133,22 +132,19 @@
                     android:text="@string/delete_my_account"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_15ssp"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins"
-                    android:padding="10dp"
+                    android:padding="@dimen/_8sdp"
                     android:textAlignment="center"
                     android:background="@drawable/button_bg"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
             </LinearLayout>
 
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

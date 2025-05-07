@@ -2,56 +2,78 @@ package com.bussiness.seniorcareapp.ui.activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
-import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.bussiness.seniorcareapp.databinding.ActivitySplashBinding
-import kotlin.math.hypot
+import com.bussiness.seniorcareapp.utils.SessionManager
 
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
+    private lateinit var sessionManager: SessionManager
+
     private var rippleCount = 0
     private val rippleRepeat = 3
-    private val rippleDuration = 1000L 
+    private val rippleDuration = 800L
+    private val splashDelay = 3000L // 3 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.main.post {
-            startRippleAnimation(binding.main)
-        }
+        sessionManager = SessionManager(this)
+
+        startLogoRippleEffect()
+
+        // Delay navigation after 3 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            navigateToNextScreen()
+        }, splashDelay)
     }
 
-    private fun startRippleAnimation(view: View) {
-        val cx = view.width / 2
-        val cy = view.height / 2
-        val finalRadius = hypot(cx.toDouble(), cy.toDouble()).toFloat()
+    private fun startLogoRippleEffect() {
+        val rippleView = binding.rippleView
+        rippleView.visibility = View.VISIBLE
+        rippleView.scaleX = 0.5f
+        rippleView.scaleY = 0.5f
+        rippleView.alpha = 1f
 
-        val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, finalRadius)
-        anim.duration = rippleDuration
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(
+            ObjectAnimator.ofFloat(rippleView, View.SCALE_X, 0.5f, 2f),
+            ObjectAnimator.ofFloat(rippleView, View.SCALE_Y, 0.5f, 2f),
+            ObjectAnimator.ofFloat(rippleView, View.ALPHA, 1f, 0f)
+        )
+        animatorSet.duration = rippleDuration
+        animatorSet.interpolator = AccelerateDecelerateInterpolator()
 
-        anim.addListener(object : AnimatorListenerAdapter() {
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 rippleCount++
                 if (rippleCount < rippleRepeat) {
-                    // Reset and repeat ripple
-                    view.postDelayed({
-                        startRippleAnimation(view)
-                    }, 200)
-                } else {
-                    // After 3 ripples, go to Onboarding
-                    val intent = Intent(this@SplashActivity, OnboardingActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    startLogoRippleEffect()
                 }
             }
         })
 
-        anim.start()
+        animatorSet.start()
+    }
+
+    private fun navigateToNextScreen() {
+        val intent = if (sessionManager.isLoggedIn()) {
+            Intent(this, MainActivity::class.java)
+        } else {
+            Intent(this, OnboardingActivity::class.java)
+        }
+        startActivity(intent)
+        finish()
     }
 }

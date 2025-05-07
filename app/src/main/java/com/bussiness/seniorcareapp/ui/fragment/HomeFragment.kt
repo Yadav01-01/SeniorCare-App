@@ -1,6 +1,8 @@
 package com.bussiness.seniorcareapp.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ import com.bussiness.seniorcareapp.ui.adapter.ExFacilitiesAdapter
 import com.bussiness.seniorcareapp.ui.adapter.FtProviderAdapter
 import com.bussiness.seniorcareapp.utils.SessionManager
 import com.google.android.material.tabs.TabLayoutMediator
+import androidx.core.graphics.toColorInt
 
 class HomeFragment : Fragment() {
 
@@ -62,6 +65,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sessionManager = SessionManager(requireContext())
@@ -69,11 +73,22 @@ class HomeFragment : Fragment() {
         if (sessionManager?.isLoggedIn() == false) {                 // skip login
             binding.fpRecyclerView.visibility = View.GONE
             binding.blurImageLogin.visibility = View.VISIBLE
+            binding.lockedTxt.text = "Please Login to access the Provider"
+            binding.btnLoginNow.text = "Login Now"
+            binding.btnLoginNow.setOnClickListener { val intent = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(intent)
+            }
             binding.seeAllFacilities.visibility = View.GONE
             binding.credits.visibility = View.VISIBLE
         } else {                                                     // on login
-            binding.fpRecyclerView.visibility = View.VISIBLE
-            binding.blurImageLogin.visibility = View.GONE
+            binding.fpRecyclerView.visibility = View.GONE
+            binding.blurImageLogin.visibility = View.VISIBLE
+            binding.lockedTxt.text = "You do not have enough credits.\nPlease purchase a subscription plan\nto access more provider information."
+            binding.btnLoginNow.text = "Subscription plan"
+            binding.btnLoginNow.setOnClickListener {
+                binding.blurImageLogin.visibility = View.GONE
+                binding.fpRecyclerView.visibility = View.VISIBLE
+            }
             binding.seeAllFacilities.visibility = View.VISIBLE
             binding.credits.visibility = View.GONE
         }
@@ -106,7 +121,9 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerViews() {
         // Horizontal Explore Facilities
-        exploreFacilityAdapter = ExFacilitiesAdapter(exploreFacilityList)
+        exploreFacilityAdapter = ExFacilitiesAdapter(exploreFacilityList) {
+            findNavController().navigate(R.id.facilityListingFragment)
+        }
         binding.exFacilitiesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = exploreFacilityAdapter
@@ -129,14 +146,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun clickListeners() {
+        var isBookmarked1 = false
+        var isBookmarked2 = false
         binding.apply {
             ivMenu.setOnClickListener  { (activity as? MainActivity)?.openDrawer() }
             arrowIc.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
             arrowIc1.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
-            btnLoginNow.setOnClickListener { val intent = Intent(requireContext(), AuthActivity::class.java)
-                startActivity(intent)
-            }
             seeAllFacilities.setOnClickListener { findNavController() .navigate(R.id.facilityListingFragment)}
+            bookmarkIcon.setOnClickListener {
+                isBookmarked1 = !isBookmarked1
+                val color = if (isBookmarked1) "#EA5B60" else "#FFFFFF" // or original color
+                bookmarkIcon.setColorFilter(color.toColorInt())
+            }
+            bookmarkIcon2.setOnClickListener{
+                isBookmarked2 = !isBookmarked2
+                val color = if (isBookmarked2) "#EA5B60" else "#FFFFFF" // or original color
+                bookmarkIcon2.setColorFilter(color.toColorInt())
+            }
+
         }
     }
 

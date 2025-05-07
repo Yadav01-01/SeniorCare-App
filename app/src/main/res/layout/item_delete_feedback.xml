@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:padding="@dimen/_9sdp"
         android:gravity="center_vertical">
 
         <!-- Reason Text -->
@@ -18,16 +18,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/i_don_t_want_to_use_home_care_anymore"
             android:fontFamily="@font/poppins"
-            android:textSize="11sp"
+            android:text="@string/i_don_t_want_to_use_home_care_anymore"
             android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
             android:textStyle="bold" />
 
         <!-- Arrow Icon -->
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
             android:src="@drawable/arrow_right"
             android:layout_marginStart="8dp" />
     </LinearLayout>

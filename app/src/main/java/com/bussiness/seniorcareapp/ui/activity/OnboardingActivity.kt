@@ -2,7 +2,9 @@ package com.bussiness.seniorcareapp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,6 +22,8 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var tabIndicator: TabLayout
+    private lateinit var indicatorLayout: LinearLayout
+    private val totalSteps = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,9 @@ class OnboardingActivity : AppCompatActivity() {
 
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize indicatorLayout from binding
+        indicatorLayout = binding.indicatorLayout
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.clRoot) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -37,29 +44,44 @@ class OnboardingActivity : AppCompatActivity() {
         val onboardingItems = listOf(
             OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
             OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
-            OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
+            OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
         )
 
         viewPager = binding.viewPager
         tabIndicator = binding.tabIndicator
 
-        viewPager.adapter = OnboardingAdapter(onboardingItems){
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        viewPager.adapter = OnboardingAdapter(
+            onboardingItems,
+            onSkipClick = {
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivity(intent)
+                finish()
+            },
+            onNextClick = { position ->
+                if (position < onboardingItems.lastIndex) {
+                    viewPager.currentItem = position + 1
+                } else {
+                    val intent = Intent(this, AuthActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        )
 
+        // Setup TabLayout with custom dot indicator
         TabLayoutMediator(tabIndicator, viewPager) { tab, _ ->
             tab.setCustomView(R.layout.custom_tab)
         }.attach()
 
         updateTabDots(0) // Set initial selected dot
+        setupIndicators()
 
-
+        // Register only one PageChangeCallback
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                updateTabDots(position)
+                updateTabDots(position) // Update TabLayout dots
+                updateIndicators(position) // Update custom indicators
             }
         })
     }
@@ -75,4 +97,25 @@ class OnboardingActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setupIndicators() {
+        indicatorLayout.removeAllViews()
+        for (i in 0 until totalSteps) {
+            val view = LayoutInflater.from(this)
+                .inflate(R.layout.item_indicator_dot, indicatorLayout, false)
+
+            val dotImage = view.findViewById<ImageView>(R.id.dotImage)
+            dotImage.setImageResource(if (i == 0) R.drawable.selected_ic_home else R.drawable.ic_home)
+
+            indicatorLayout.addView(view)
+        }
+    }
+
+    private fun updateIndicators(position: Int) {
+        for (i in 0 until indicatorLayout.childCount) {
+            val dot = indicatorLayout.getChildAt(i).findViewById<ImageView>(R.id.dotImage)
+            dot.setImageResource(if (i == position) R.drawable.selected_ic_home else R.drawable.ic_home)
+        }
+    }
 }
+

@@ -1,14 +1,17 @@
 package com.bussiness.seniorcareapp.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bussiness.seniorcareapp.data.model.Facility
 import com.bussiness.seniorcareapp.databinding.ItemSavedFacilitiesBinding
+import androidx.core.graphics.toColorInt
 
 class FacilityAdapter(
     private val facilityList: List<Facility>,
-    private val onItemClick: (Facility) -> Unit
+    private val onItemClick: (Facility) -> Unit,
+    private val onBookmarkClick: (Facility) -> Unit
 ) : RecyclerView.Adapter<FacilityAdapter.FacilityViewHolder>() {
 
     inner class FacilityViewHolder(val binding: ItemSavedFacilitiesBinding) :
@@ -20,8 +23,19 @@ class FacilityAdapter(
             binding.servicesTxt.text = facility.services
             binding.priceTxt.text = facility.price
 
+            // Set initial bookmark icon color
+            val color = if (facility.isBookmarked) "#EA5B60" else "#FFFFFF"
+            binding.bookmarkIcon.setColorFilter(color.toColorInt())
+
             binding.arrowIc.setOnClickListener {
                 onItemClick(facility)
+            }
+
+            binding.bookmarkIcon.setOnClickListener {
+                // Toggle bookmark state
+                facility.isBookmarked = !facility.isBookmarked
+                notifyItemChanged(adapterPosition) // update icon
+                onBookmarkClick(facility) // notify outside
             }
         }
     }

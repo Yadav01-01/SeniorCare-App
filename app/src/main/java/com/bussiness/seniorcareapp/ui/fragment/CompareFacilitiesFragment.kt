@@ -1,9 +1,11 @@
 package com.bussiness.seniorcareapp.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bussiness.seniorcareapp.R
@@ -39,6 +41,7 @@ class CompareFacilitiesFragment : Fragment() {
     }
 
     private fun clickListeners() {
+        var isBookmarked = false
         binding.apply {
             val bundle = Bundle().apply {
                 putBoolean("isForCompare", true)
@@ -55,12 +58,27 @@ class CompareFacilitiesFragment : Fragment() {
             ivMenu.setOnClickListener {
                 (activity as? MainActivity)?.openDrawer()
             }
+
+            bookmarkIcon.setOnClickListener {
+                isBookmarked = !isBookmarked
+                val color = if (isBookmarked) "#EA5B60" else "#FFFFFF" // or original color
+                bookmarkIcon.setColorFilter(color.toColorInt())
+            }
+
+            arrowIc.setOnClickListener {
+                findNavController().navigate(R.id.facilityDetailFragment)
+            }
         }
     }
 
     // Dummy method to simulate updating facility 1 data in UI
+    @SuppressLint("SetTextI18n")
     private fun updateFacility1(facilityId: String) {
         binding.apply {
+            changeFacilityBtn1.text = "Change Facility"
+            changeFacilityBtn2.text = "Change Facility"
+            facilityImage1.setImageResource(R.drawable.genac_ic)
+            facilityImage2.setImageResource(R.drawable.genac_ic)
             societyName1.text = "lorem ipsum"
             societyName2.text = "lorem ipsum"
             piInfo1.text = "John Deo"

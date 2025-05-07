@@ -58,6 +58,10 @@ dependencies {
     //navigation
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+    //spd
+    implementation (libs.sdp.android)
+    implementation (libs.ssp.android)
+
 
 
 }

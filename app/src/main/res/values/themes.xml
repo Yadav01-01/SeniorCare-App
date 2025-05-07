@@ -25,8 +25,20 @@
         <item name="cornerSize">8%</item>
     </style>
 
+    <style name="CardImage" parent="ShapeAppearanceOverlay.Material3.Button">
+        <item name="cornerSize">10%</item>
+    </style>
+
+
     <style name="BannerImage" parent="ShapeAppearanceOverlay.Material3.Button">
         <item name="cornerSize">18%</item>
+    </style>
+
+    <style name="OnBoardingImage" parent="ShapeAppearanceOverlay.Material3.Button">
+        <item name="cornerSizeBottomLeft">15%</item>
+        <item name="cornerSizeBottomRight">0%</item>
+        <item name="cornerSizeTopLeft">0%</item>
+        <item name="cornerSizeTopRight">0%</item>
     </style>
 
     <style name="sharpCornerImage" parent="ShapeAppearanceOverlay.Material3.Button">

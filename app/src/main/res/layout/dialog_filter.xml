@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="15dp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
     android:background="@drawable/dialog_bg"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/_15sdp">
 
     <!-- Cross Icon -->
     <com.google.android.material.imageview.ShapeableImageView
@@ -23,114 +23,129 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/poppins"
         android:text="@string/filter"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold" />
 
     <!-- First Row -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp">
 
         <TextView
             android:id="@+id/statusText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:background="@drawable/filter_btn_bg"
-            android:drawablePadding="34dp"
+            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical|start"
-            android:padding="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="@dimen/_7sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_7sdp"
             android:text="@string/status"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_7ssp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/arrow_down"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/typeText"
+            app:layout_constraintWidth_percent="0.40" />
 
         <TextView
             android:id="@+id/typeText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
             android:background="@drawable/filter_btn_bg"
-            android:drawablePadding="34dp"
+            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical|start"
-            android:padding="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="@dimen/_7sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
             android:text="@string/type"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_7ssp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/arrow_down"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/statusText"
+            app:layout_constraintWidth_percent="0.40" />
 
         <TextView
             android:id="@+id/facility"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/filter_btn_bg"
-            android:drawablePadding="20dp"
+            android:drawablePadding="@dimen/_5sdp"
+            android:ellipsize="end"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical|start"
-            android:padding="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:maxLines="1"
+            android:padding="@dimen/_7sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
             android:text="@string/facility"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_7ssp"
             android:textStyle="bold"
-            android:layout_marginTop="15dp"
             app:drawableEndCompat="@drawable/arrow_down"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statusText" />
+            app:layout_constraintEnd_toEndOf="@+id/statusText"
+            app:layout_constraintStart_toStartOf="@+id/statusText"
+            app:layout_constraintTop_toBottomOf="@id/typeText"
+            app:layout_constraintWidth_percent="0.40" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp">
 
         <!-- Price Range Text -->
         <TextView
             android:id="@+id/priceRangeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins"
             android:text="@string/price_range_from_5000_to_100000"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="@dimen/_9ssp" />
 
         <com.google.android.material.slider.RangeSlider
             android:id="@+id/rangeSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_7sdp"
             android:valueFrom="5000"
             android:valueTo="100000"
             android:stepSize="1000"
-            app:trackHeight="4dp"
-            app:thumbRadius="12dp"
+            app:trackHeight="@dimen/_2sdp"
+            app:thumbRadius="@dimen/_8sdp"
             app:haloRadius="0dp"
             app:trackColorInactive="@color/grey"
             app:trackColorActive="@color/purple"
@@ -145,48 +160,58 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp">
 
         <TextView
             android:id="@+id/cityText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:background="@drawable/filter_btn_bg"
-            android:drawablePadding="34dp"
+            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical|start"
-            android:padding="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="@dimen/_7sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_8sdp"
             android:text="@string/city"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_8ssp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/arrow_down"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/roomsText"
+            app:layout_constraintWidth_percent="0.40" />
 
         <TextView
             android:id="@+id/roomsText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
             android:background="@drawable/filter_btn_bg"
-            android:drawablePadding="34dp"
+            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical|start"
-            android:padding="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="@dimen/_7sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
             android:text="@string/rooms"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="11sp"
+            android:textSize="@dimen/_8ssp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/arrow_down"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cityText"
+            app:layout_constraintWidth_percent="0.40" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,15 +219,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/amenities"
             android:fontFamily="@font/poppins"
-            android:textSize="12sp"
+            android:textSize="@dimen/_8ssp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
@@ -210,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/filterAmenitiesRecyclerView"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/_8sdp"
             tools:listitem="@layout/item_filter_amenities"/>
 
     </LinearLayout>
@@ -218,16 +243,15 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:background="@drawable/button_bg"
         android:text="@string/submit"
         android:layout_gravity="center"
         android:textAllCaps="false"
+        android:textStyle="bold"
         android:fontFamily="@font/poppins"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/_15ssp"
         android:id="@+id/submitBtn"/>
-
-
 
 </LinearLayout>

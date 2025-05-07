@@ -1,21 +1,30 @@
 package com.bussiness.seniorcareapp.ui.fragment
 
-import android.annotation.SuppressLint
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Bitmap
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.bussiness.seniorcareapp.databinding.FragmentProfileBinding
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ProfileFragment : Fragment() {
 
@@ -24,22 +33,36 @@ class ProfileFragment : Fragment() {
 
     private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Array<String>>
+
+    private var photoUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Registering activity result launchers
-        cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val photo = result.data?.extras?.get("data") as? Bitmap
-                binding.profileImage.setImageBitmap(photo)
+        // Register permission request callback
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            val granted = permissions.all { it.value }
+            if (granted) {
+                showImagePickerDialog()
+            } else {
+                Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
             }
         }
 
+        // Camera result handler
+        cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                photoUri?.let { binding.profileImage.setImageURI(it) }
+            }
+        }
+
+        // Gallery result handler
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val selectedImageUri: Uri? = result.data?.data
-                binding.profileImage.setImageURI(selectedImageUri)
+                result.data?.data?.let { binding.profileImage.setImageURI(it) }
             }
         }
     }
@@ -54,38 +77,60 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setEndIconVisibility(View.GONE)
         setupClickListeners()
     }
 
-    private fun setupClickListeners() {
-        binding.apply {
-            editProfile.setOnClickListener {
-                editCameraBtn.visibility = View.VISIBLE
-                saveChanges.visibility = View.VISIBLE
-                setEndIconVisibility(View.VISIBLE)
-            }
+    private fun setupClickListeners() = with(binding) {
+        editProfile.setOnClickListener {
+            toggleEditMode(true)
+        }
 
-            saveChanges.setOnClickListener {
-                editCameraBtn.visibility = View.GONE
-                saveChanges.visibility = View.GONE
-                setEndIconVisibility(View.GONE)
-            }
+        saveChanges.setOnClickListener {
+            toggleEditMode(false)
+        }
 
-            editCameraBtn.setOnClickListener {
-                showImagePickerDialog()
-            }
+        editCameraBtn.setOnClickListener {
+            checkPermissionsAndOpenPicker()
         }
     }
 
-    private fun setEndIconVisibility(visibility: Int) {
-        listOf(
-            binding.nameIcon,
-            binding.mailIcon,
-            binding.phoneIcon,
-            binding.locationIcon
-        ).forEach { layout ->
-            layout.findViewById<View>(com.google.android.material.R.id.text_input_end_icon)?.visibility = visibility
+    private fun toggleEditMode(enable: Boolean) = with(binding) {
+        val visibility = if (enable) View.VISIBLE else View.GONE
+
+        editCameraBtn.visibility = visibility
+        saveChanges.visibility = visibility
+        emailVerify.visibility = visibility
+        phoneVerify.visibility = visibility
+        editIcon.visibility = visibility
+        locationEditIcon.visibility = visibility
+
+        edtEmail.isEnabled = enable
+        edtPhone.isEnabled = enable
+        edtName.isEnabled = enable
+        edtLocation.isEnabled = enable
+    }
+
+    private fun checkPermissionsAndOpenPicker() {
+        val requiredPermissions = mutableListOf<String>().apply {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                add(Manifest.permission.CAMERA)
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                    add(Manifest.permission.READ_MEDIA_IMAGES)
+                }
+            } else {
+                if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            }
+        }
+
+        if (requiredPermissions.isNotEmpty()) {
+            requestPermissionLauncher.launch(requiredPermissions.toTypedArray())
+        } else {
+            showImagePickerDialog()
         }
     }
 
@@ -103,14 +148,39 @@ class ProfileFragment : Fragment() {
     }
 
     private fun openCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val photoFile = createImageFile() ?: run {
+            Toast.makeText(requireContext(), "Could not create image file", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        photoUri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.provider",
+            photoFile
+        )
+
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+            putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+        }
+
         cameraLauncher.launch(intent)
     }
 
-    @SuppressLint("IntentReset")
+    private fun createImageFile(): File? {
+        return try {
+            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+            val storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        intent.type = "image/*"
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+            type = "image/*"
+        }
         galleryLauncher.launch(intent)
     }
 

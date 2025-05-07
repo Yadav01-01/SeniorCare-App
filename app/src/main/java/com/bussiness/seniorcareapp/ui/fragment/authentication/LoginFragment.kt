@@ -14,6 +14,7 @@ import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.databinding.DialogLoginSucessBinding
 import com.bussiness.seniorcareapp.databinding.FragmentLoginBinding
 import com.bussiness.seniorcareapp.ui.activity.MainActivity
+import com.bussiness.seniorcareapp.utils.ErrorMessage
 import com.bussiness.seniorcareapp.utils.SessionManager
 
 class LoginFragment : Fragment() {
@@ -42,7 +43,9 @@ class LoginFragment : Fragment() {
             btnLogin.setOnClickListener {
                 sessionManager.setLogin(true)
                 sessionManager.setSkipLogin(false)
-                showLoginSuccessDialog()
+                if (dataValidation()){
+                    showLoginSuccessDialog()
+                }
             }
 
             signUpTxt.setOnClickListener {
@@ -80,6 +83,8 @@ class LoginFragment : Fragment() {
         val dialogBinding = DialogLoginSucessBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBinding.root)
 
+        dialogBinding.crossIcon.setOnClickListener { dialog.dismiss() }
+
         dialogBinding.okayBtn.setOnClickListener {
             dialog.dismiss()
             startActivity(Intent(requireContext(), MainActivity::class.java))
@@ -98,6 +103,37 @@ class LoginFragment : Fragment() {
             show()
         }
     }
+
+    private fun dataValidation(): Boolean {
+        binding.apply {
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString()
+
+            if (email.isEmpty()) {
+                edtEmail.error = ErrorMessage.EMAIL_ERROR
+                edtEmail.requestFocus()
+                return false
+            }
+
+            if (password.isEmpty()) {
+                edtPassword.error = ErrorMessage.PASSWORD_ERROR
+                edtPassword.requestFocus()
+                return false
+            }
+
+            val passwordPattern =
+                ErrorMessage.PASSWORD_PATTERN.toRegex()
+
+            if (!password.matches(passwordPattern)) {
+                edtPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
+                edtPassword.requestFocus()
+                return false
+            }
+        }
+        return true
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

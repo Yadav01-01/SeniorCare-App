@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.databinding.FragmentRegisterBinding
 import com.bussiness.seniorcareapp.ui.activity.MainActivity
+import com.bussiness.seniorcareapp.utils.ErrorMessage
 import com.bussiness.seniorcareapp.utils.SessionManager
 
 class RegisterFragment : Fragment() {
@@ -94,8 +95,10 @@ class RegisterFragment : Fragment() {
             btnRegister.setOnClickListener {
                 sessionManager?.setLogin(true)
                 sessionManager?.setSkipLogin(false)
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                requireActivity().finish()
+                if (dataValidation()){
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
             }
         }
     }
@@ -108,6 +111,50 @@ class RegisterFragment : Fragment() {
         }
         eyeIcon.setImageResource(if (isVisible) R.drawable.eye_ic else R.drawable.close_eye)
         editText.setSelection(editText.text?.length ?: 0)
+    }
+
+    private fun dataValidation() : Boolean {
+        binding.apply {
+            if (edtEmail.text.toString().trim().isEmpty()){
+                edtEmail.error = ErrorMessage.EMAIL_ERROR
+                edtEmail.requestFocus()
+                return false
+            }
+            if (edtYourPassword.text.toString().trim().isEmpty()){
+                edtYourPassword.error = ErrorMessage.PASSWORD_ERROR
+                edtYourPassword.requestFocus()
+                return false
+            }
+            if (edtCnfPassword.text.toString().trim().isEmpty()){
+                edtCnfPassword.error = ErrorMessage.PASSWORD_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+            if (edtYourPassword.text.toString().trim() != edtCnfPassword.text.toString().trim()){
+                edtCnfPassword.error = ErrorMessage.PASSWORD_MISMATCH_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+            if (!checkbox.isChecked){
+                checkbox.error = ErrorMessage.CHECKBOX_ERROR
+                checkbox.requestFocus()
+                return false
+            }
+            val passwordPattern =
+                ErrorMessage.PASSWORD_PATTERN.toRegex()
+
+            if (!edtYourPassword.text.toString().trim().matches(passwordPattern)) {
+                edtYourPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
+                edtYourPassword.requestFocus()
+                return false
+            }
+            if (!edtCnfPassword.text.toString().trim().matches(passwordPattern)) {
+                edtCnfPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
+                edtCnfPassword.requestFocus()
+                return false
+            }
+        }
+        return true
     }
 
     override fun onDestroyView() {

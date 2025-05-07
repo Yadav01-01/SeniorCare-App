@@ -6,5 +6,6 @@ data class Facility(
     val location: String,
     val services: String,
     val price: String,
-    val id : String
+    val id : String,
+    var isBookmarked: Boolean = false
 )

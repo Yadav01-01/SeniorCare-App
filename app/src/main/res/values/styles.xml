@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomNavItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CustomNavIcon">
+        <item name="android:tint">#303030</item>
+    </style>
+
+    <style name="CustomNavText">
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textColor">#303030</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+</resources>

@@ -11,7 +11,7 @@
         android:id="@+id/rll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/_7sdp"
             android:src="@drawable/back_ic" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/poppins"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/_15ssp"/>
 
     </RelativeLayout>
 
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/frame_bg"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/rll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +51,14 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                android:padding="20dp"
+                android:padding="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,6 @@
                    android:id="@+id/subscriptionRecyclerView"
                    tools:listitem="@layout/item_subscription"
                    tools:itemCount="3"/>
-
 
             </LinearLayout>
 

@@ -9,17 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.databinding.ActivityMainBinding
 import com.bussiness.seniorcareapp.databinding.DialogDeleteAccountBinding
@@ -32,10 +30,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var sessionManager: SessionManager
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -47,40 +45,105 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Set up navigation controller
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.bottom_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.bottom_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        binding.bottomNavigationView.setupWithNavController(navController)
 
         setupNavigationView()
+        setupBottomNav()
 
-        // Set initial fragment
-        if (sessionManager.isLoggedIn()) {
-            navController.navigate(R.id.homeFragment)
-        } else if (sessionManager.isSkippedLogin()) {
+        if (sessionManager.isLoggedIn() || sessionManager.isSkippedLogin()) {
             navController.navigate(R.id.homeFragment)
         } else {
             navController.navigate(R.id.loginFragment)
+        }
+
+        if (sessionManager.isLoggedIn()) {
+            binding.textProfile.text = "Profile"
+        }else{
+            binding.textProfile.text = "Login/SignUp"
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val visibleDestinations = setOf(
                 R.id.homeFragment,
                 R.id.compareFacilitiesFragment,
-                R.id.profileFragment,
-                R.id.savedFacilitiesFragment
+                R.id.savedFacilitiesFragment,
+                R.id.profileFragment
             )
 
-            binding.bottomNavigationView.visibility =
+            binding.customBottomNav.visibility =
                 if (destination.id in visibleDestinations) View.VISIBLE else View.GONE
+
+            val selected = when (destination.id) {
+                R.id.homeFragment -> "home"
+                R.id.compareFacilitiesFragment -> "compare"
+                R.id.savedFacilitiesFragment -> "saved"
+                R.id.profileFragment -> "profile"
+                else -> ""
+            }
+
+            updateBottomNavSelection(selected)
         }
 
     }
 
+    private fun setupBottomNav() {
+        binding.apply {
+            homeFragment.setOnClickListener {
+                updateBottomNavSelection("home")
+                navController.navigate(R.id.homeFragment)
+            }
+            compareFacility.setOnClickListener {
+                updateBottomNavSelection("compare")
+                navController.navigate(R.id.compareFacilitiesFragment)
+            }
+            savedFacilities.setOnClickListener {
+                updateBottomNavSelection("saved")
+                navController.navigate(R.id.savedFacilitiesFragment)
+            }
+            profileFragment.setOnClickListener {
+                updateBottomNavSelection("profile")
+                navController.navigate(R.id.profileFragment)
+            }
+        }
+
+    }
+
+
+    private fun updateBottomNavSelection(selected: String) {
+        // Home
+        val isHome = selected == "home"
+        binding.iconHome.setColorFilter(ContextCompat.getColor(this, if (isHome) R.color.white else R.color.darkGrey))
+        binding.textHome.setTextColor(ContextCompat.getColor(this, if (isHome) R.color.purple else R.color.darkGrey))
+        binding.frameHome.setBackgroundResource(if (isHome) R.drawable.nav_bg_selected else R.drawable.nav_bg)
+
+        // Compare
+        val isCompare = selected == "compare"
+        binding.iconCompare.setColorFilter(ContextCompat.getColor(this, if (isCompare) R.color.white else R.color.darkGrey))
+        binding.textCompare.setTextColor(ContextCompat.getColor(this, if (isCompare) R.color.purple else R.color.darkGrey))
+        binding.frameCompare.setBackgroundResource(if (isCompare) R.drawable.nav_bg_selected else R.drawable.nav_bg)
+
+        // Saved
+        val isSaved = selected == "saved"
+        binding.iconSaved.setColorFilter(ContextCompat.getColor(this, if (isSaved) R.color.white else R.color.darkGrey))
+        binding.textSaved.setTextColor(ContextCompat.getColor(this, if (isSaved) R.color.purple else R.color.darkGrey))
+        binding.frameSaved.setBackgroundResource(if (isSaved) R.drawable.nav_bg_selected else R.drawable.nav_bg)
+
+        // Profile
+        val isProfile = selected == "profile"
+        binding.iconProfile.setColorFilter(ContextCompat.getColor(this, if (isProfile) R.color.white else R.color.darkGrey))
+        binding.textProfile.setTextColor(ContextCompat.getColor(this, if (isProfile) R.color.purple else R.color.darkGrey))
+        binding.frameProfile.setBackgroundResource(if (isProfile) R.drawable.nav_bg_selected else R.drawable.nav_bg)
+//        binding.isProfile.visibility = if (isProfile) View.VISIBLE else View.GONE
+    }
+
+
+
     private fun setupNavigationView() {
         val navigationView = binding.navigationView
         val headerView = navigationView.getHeaderView(0)
+
         val nameTextView = headerView.findViewById<TextView>(R.id.name)
         val image = headerView.findViewById<ShapeableImageView>(R.id.profileImage)
         val loginImage = headerView.findViewById<ShapeableImageView>(R.id.loginImage)
@@ -88,9 +151,7 @@ class MainActivity : AppCompatActivity() {
         val btnSignUp = headerView.findViewById<AppCompatButton>(R.id.btnSignUp)
         val drawerCrossIcon = headerView.findViewById<ImageView>(R.id.imageView)
 
-        // Show/hide header info and menu items based on login state
         if (sessionManager.isLoggedIn()) {
-            // Simulated user data
             nameTextView.visibility = View.VISIBLE
             image.visibility = View.VISIBLE
             loginImage.visibility = View.GONE
@@ -100,16 +161,18 @@ class MainActivity : AppCompatActivity() {
 
             navigationView.menu.findItem(R.id.navFAQ).isVisible = true
             navigationView.menu.findItem(R.id.navLogout).isVisible = true
-        } else if (sessionManager.isSkippedLogin()) {
+        } else {
             nameTextView.visibility = View.GONE
             image.visibility = View.GONE
             loginImage.visibility = View.VISIBLE
             loginBtn.visibility = View.VISIBLE
             btnSignUp.visibility = View.VISIBLE
             drawerCrossIcon.setOnClickListener { closeDrawer() }
-            loginBtn.setOnClickListener { val intent = Intent(this, AuthActivity::class.java)
-                startActivity(intent)
+
+            loginBtn.setOnClickListener {
+                startActivity(Intent(this, AuthActivity::class.java))
             }
+
             btnSignUp.setOnClickListener {
                 val intent = Intent(this, AuthActivity::class.java)
                 intent.putExtra("targetFragment", "signup")
@@ -131,7 +194,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navFAQ -> navController.navigate(R.id.faqFragment)
                 R.id.navLogout -> {
                     dialogLogout()
-                    sessionManager.clearSession()
                 }
             }
             closeDrawer()
