@@ -62,7 +62,7 @@
         tools:layout="@layout/fragment_facility_listing" />
     <fragment
         android:id="@+id/facilityDetailFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.FacilityDetailFragment"
-        android:label="fragment_facility_detail"
-        tools:layout="@layout/fragment_facility_detail" />
+        android:name="com.bussiness.seniorcareapp.ui.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>

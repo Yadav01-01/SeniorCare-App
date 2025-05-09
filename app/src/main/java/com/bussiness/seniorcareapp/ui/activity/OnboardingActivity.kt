@@ -3,6 +3,7 @@ package com.bussiness.seniorcareapp.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
@@ -43,8 +44,8 @@ class OnboardingActivity : AppCompatActivity() {
 
         val onboardingItems = listOf(
             OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
-            OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
-            OnboardingItem(R.drawable.onb_img1, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
+            OnboardingItem(R.drawable.onb_img2, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
+            OnboardingItem(R.drawable.onb_img3, "LOREM IPSUM", "Lorem Ipsum is simply dummy text of the printing and typesetting industry")
         )
 
         viewPager = binding.viewPager
@@ -106,6 +107,10 @@ class OnboardingActivity : AppCompatActivity() {
 
             val dotImage = view.findViewById<ImageView>(R.id.dotImage)
             dotImage.setImageResource(if (i == 0) R.drawable.selected_ic_home else R.drawable.ic_home)
+
+            val dotLine = view.findViewById<View>(R.id.dot)
+            dotLine.visibility = if (i < 2) View.VISIBLE else View.INVISIBLE
+
 
             indicatorLayout.addView(view)
         }

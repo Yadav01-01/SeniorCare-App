@@ -26,13 +26,18 @@
     </style>
 
     <style name="CardImage" parent="ShapeAppearanceOverlay.Material3.Button">
-        <item name="cornerSize">10%</item>
+        <item name="cornerSize">15%</item>
     </style>
 
 
     <style name="BannerImage" parent="ShapeAppearanceOverlay.Material3.Button">
         <item name="cornerSize">18%</item>
     </style>
+
+    <style name="CustomSliderStyle" parent="Widget.Material3.Slider">
+        <item name="thumbIcon">@drawable/slider_thumb</item>
+    </style>
+
 
     <style name="OnBoardingImage" parent="ShapeAppearanceOverlay.Material3.Button">
         <item name="cornerSizeBottomLeft">15%</item>

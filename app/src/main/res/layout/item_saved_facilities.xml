@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="@dimen/_10sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -13,7 +13,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/featuredImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/_120sdp"
             android:src="@drawable/banner_bg"
             android:scaleType="centerCrop"
             app:shapeAppearance="@style/PosterImage"/>
@@ -24,8 +24,48 @@
             android:src="@drawable/bookmark_ic"
             android:id="@+id/bookmarkIcon"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ratingCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/featuredImage"
+            android:layout_alignStart="@id/featuredImage"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_3sdp"
+                android:paddingHorizontal="@dimen/_8sdp">
+
+                <TextView
+                    android:id="@+id/ratingTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_4_8"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="@dimen/_11ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/star1"
+                    android:layout_marginStart="@dimen/_6sdp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
 
     </RelativeLayout>
@@ -36,8 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/facility_name"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textStyle="bold"
         android:textColor="@color/purple"
         android:fontFamily="@font/poppins"/>
@@ -45,14 +85,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_1sdp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/location"
-            android:textSize="14sp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             android:textColor="@color/purple"
             android:fontFamily="@font/poppins"/>
@@ -61,10 +101,10 @@
             android:id="@+id/locationTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/_10ssp"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins"
-            android:paddingStart="10dp"
+            android:paddingStart="@dimen/_6sdp"
             android:paddingEnd="0dp"
             android:text="@string/city_state_country"/>
 
@@ -73,14 +113,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_1sdp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/services"
-            android:textSize="14sp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             android:textColor="@color/purple"
             android:fontFamily="@font/poppins"/>
@@ -89,10 +129,10 @@
             android:id="@+id/servicesTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/_10ssp"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins"
-            android:paddingStart="10dp"
+            android:paddingStart="@dimen/_6sdp"
             android:paddingEnd="0dp"
             android:text="@string/assisted_living_memory_care"/>
 
@@ -101,7 +141,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_1sdp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
@@ -109,8 +149,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/from"
-            android:textSize="11sp"
+            android:textSize="@dimen/_9ssp"
             android:textColor="@color/purple"
+            android:textStyle="bold"
             android:fontFamily="@font/poppins"/>
 
         <TextView
@@ -118,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_25_9"
-            android:textSize="16sp"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
             android:paddingStart="5dp"
             android:paddingEnd="0dp"
@@ -134,10 +175,8 @@
             android:id="@+id/arrowIc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/_6sdp"
             android:src="@drawable/arrow_ic"/>
     </LinearLayout>
-
-
 
 </LinearLayout>

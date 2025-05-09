@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,6 @@ class SavedFacilitiesFragment : Fragment() {
     private var _binding: FragmentSavedFacilitiesBinding? = null
     private val binding get() = _binding!!
     private lateinit var savedFacilitiesAdapter: FacilityAdapter
-    private var isBookmarked = false
     private val savedFacilitiesList = List(6){
         Facility(R.drawable.banner_bg,"Facility Name","City, State, Country","Assisted Living, Memory Care","\$25.9/-","")
     }

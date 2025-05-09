@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/card_bg"
-        android:padding="@dimen/_18sdp">
+        android:padding="@dimen/_20sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,10 +41,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/verify_your_account"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/purple"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_18ssp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +62,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textStyle="bold"
+                android:layout_marginStart="@dimen/_3sdp"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp"/>
@@ -78,6 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:length="6"
+                app:box_margin="@dimen/_3sdp"
                 app:otp_box_background="@drawable/otp_bg"
                 app:otp_box_background_error="@color/red" />
 
@@ -95,6 +96,7 @@
                     android:layout_weight="1"
                     android:text="@string/resend_otp"
                     android:textStyle="bold"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:fontFamily="@font/poppins"
                     android:textSize="@dimen/_10ssp"
                     android:textColor="@color/black" />
@@ -119,7 +121,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/poppins_bold"
                 android:background="@drawable/button_bg"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"/>

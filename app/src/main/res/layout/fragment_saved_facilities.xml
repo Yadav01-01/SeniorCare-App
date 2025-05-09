@@ -74,11 +74,11 @@
                     android:textColor="@color/black"/>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/savedFacilitiesRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_10sdp"
-                    tools:listitem="@layout/item_saved_facilities"
-                    android:id="@+id/savedFacilitiesRecyclerView" />
+                    tools:listitem="@layout/item_saved_facilities" />
 
             </LinearLayout>
 

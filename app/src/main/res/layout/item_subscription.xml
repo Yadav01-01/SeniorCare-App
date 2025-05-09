@@ -2,17 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/_5sdp">
+    android:layout_height="@dimen/_280sdp"
+    android:layout_margin="@dimen/_5sdp">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_2sdp"
+        android:layout_marginVertical="@dimen/_2sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_2sdp"
-        app:strokeWidth="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -25,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/plan_bg" />
+                android:src="@drawable/plan_ic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,11 +40,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="@string/basic_plan"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_12ssp"/>
 
                 <!-- Price and Duration -->
                 <LinearLayout
@@ -59,21 +58,19 @@
                         android:id="@+id/planAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/_7_00"
                         android:textColor="#EA5B60"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_16ssp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:fontFamily="@font/poppins"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/month"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_10ssp"/>
                 </LinearLayout>
 
                 <!-- Feature List -->
@@ -81,137 +78,91 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_8sdp">
 
-                    <!-- Repeat Feature Rows -->
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/feature1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/limited_features"
+                        android:textColor="@color/txtColor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_12ssp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        app:drawableStartCompat="@drawable/plan_tick_ic" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/plan_tick_ic" />
-
-                        <TextView
-                            android:id="@+id/feature1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/limited_features"
-                            android:textColor="@color/txtColor"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/feature2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/limited_features"
+                        android:textColor="@color/txtColor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_8ssp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        app:drawableStartCompat="@drawable/plan_tick_ic" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/plan_tick_ic" />
-
-                        <TextView
-                            android:id="@+id/feature2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/limited_features"
-                            android:textColor="@color/txtColor"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/feature3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/limited_features"
+                        android:textColor="@color/txtColor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_8ssp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        app:drawableStartCompat="@drawable/plan_tick_ic" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/plan_tick_ic" />
-
-                        <TextView
-                            android:id="@+id/feature3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/limited_features"
-                            android:textColor="@color/txtColor"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/feature4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/limited_features"
+                        android:textColor="@color/txtColor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_8ssp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        app:drawableStartCompat="@drawable/plan_tick_ic" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/plan_tick_ic" />
-
-                        <TextView
-                            android:id="@+id/feature4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/limited_features"
-                            android:textColor="@color/txtColor"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/feature5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/limited_features"
+                        android:textColor="@color/txtColor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_8ssp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        app:drawableStartCompat="@drawable/plan_tick_ic" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:src="@drawable/plan_tick_ic" />
-
-                        <TextView
-                            android:id="@+id/feature5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/limited_features"
-                            android:textColor="@color/txtColor"
-                            android:textSize="16sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Upgrade Button -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tapBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:background="@drawable/button_bg"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_25sdp"
+                    android:paddingEnd="@dimen/_25sdp"
+                    android:background="@drawable/locked_btn_bg"
                     android:text="@string/upgrade"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
         </FrameLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

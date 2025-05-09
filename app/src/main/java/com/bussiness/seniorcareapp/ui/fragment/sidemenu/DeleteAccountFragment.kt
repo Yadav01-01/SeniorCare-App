@@ -1,6 +1,7 @@
 package com.bussiness.seniorcareapp.ui.fragment.sidemenu
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bussiness.seniorcareapp.databinding.DialogDeleteAccountBinding
 import com.bussiness.seniorcareapp.databinding.FragmentDeleteAccountBinding
+import com.bussiness.seniorcareapp.ui.activity.AuthActivity
 import com.bussiness.seniorcareapp.ui.adapter.ReasonAdapter
 
 class DeleteAccountFragment : Fragment() {
@@ -45,18 +47,24 @@ class DeleteAccountFragment : Fragment() {
     private fun setUpRecyclerView(){
         binding.deleteRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            deleteReasonAdapter = ReasonAdapter(reasonList){selectedReason ->
-                dialogDelete()
-            }
+            deleteReasonAdapter = ReasonAdapter(
+                reasonList,
+                onOtherItemClick = {
+                    binding.feedbackCard.visibility = View.VISIBLE
+                    binding.deleteAccountBtn.visibility = View.VISIBLE
+                },
+                onItemClick = { selectedReason ->
+                    dialogDelete()
+                }
+            )
             adapter = deleteReasonAdapter
         }
     }
 
     private fun clickListeners() {
         binding.apply {
-            backIcon.setOnClickListener {
-                findNavController().navigateUp()
-            }
+            backIcon.setOnClickListener { findNavController().navigateUp() }
+            deleteAccountBtn.setOnClickListener { dialogDelete() }
         }
     }
 
@@ -66,9 +74,10 @@ class DeleteAccountFragment : Fragment() {
         dialog.setContentView(binding.root)
 
         binding.apply {
-            deleteBtn.setOnClickListener { dialog.dismiss() }
             cancelBtn.setOnClickListener { dialog.dismiss() }
             crossIcon.setOnClickListener { dialog.dismiss() }
+            deleteBtn.setOnClickListener { val intent = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(intent)}
         }
 
         dialog.apply {

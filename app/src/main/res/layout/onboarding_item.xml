@@ -66,6 +66,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/purple"
                 android:textSize="@dimen/_19ssp"
+                android:layout_marginTop="@dimen/_44sdp"
                 android:layout_marginStart="@dimen/_8sdp"/>
 
             <!-- Description -->

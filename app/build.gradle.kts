@@ -61,6 +61,8 @@ dependencies {
     //spd
     implementation (libs.sdp.android)
     implementation (libs.ssp.android)
+    //material 2
+    implementation (libs.material)
 
 
 

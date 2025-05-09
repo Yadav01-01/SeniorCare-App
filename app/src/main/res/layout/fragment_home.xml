@@ -131,7 +131,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_180sdp"
+                    android:layout_height="@dimen/_160sdp"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="4dp">
 
@@ -157,8 +157,9 @@
                             app:tabIndicatorFullWidth="false"
                             app:tabIndicatorHeight="0dp"
                             app:tabMinWidth="5dp"
-                            app:tabMode="fixed"
-                            app:tabRippleColor="@android:color/transparent" />
+                            app:tabPaddingStart="1dp"
+                            app:tabPaddingEnd="1dp"
+                            app:tabMode="fixed"  />
                     </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -201,6 +202,7 @@
                         android:text="@string/see_all"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9ssp"
+                        android:textStyle="bold"
                         android:layout_gravity="end|center"
                         android:fontFamily="@font/poppins"/>
 
@@ -215,25 +217,69 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <!-- Background Image -->
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/featuredImage"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_120sdp"
                             android:src="@drawable/banner_bg"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PosterImage"/>
+                            app:shapeAppearance="@style/PosterImage" />
 
+                        <!-- Bookmark Icon - Top End -->
                         <ImageView
+                            android:id="@+id/bookmarkIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/bookmark_ic"
-                            android:id="@+id/bookmarkIcon"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignTop="@id/featuredImage"
+                            android:layout_alignEnd="@id/featuredImage"
                             android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginEnd="@dimen/_8sdp"/>
+                            android:layout_marginEnd="@dimen/_8sdp" />
 
+                        <!-- Rating Card - Top Start -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/ratingCard"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/featuredImage"
+                            android:layout_alignStart="@id/featuredImage"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_3sdp"
+                                android:paddingHorizontal="@dimen/_8sdp">
+
+                                <TextView
+                                    android:id="@+id/ratingTxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/_4_8"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/_11ssp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/star1"
+                                    android:layout_marginStart="@dimen/_6sdp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
 
                     </RelativeLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -313,6 +359,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/from"
                             android:textSize="@dimen/_9ssp"
+                            android:textStyle="bold"
                             android:textColor="@color/purple"
                             android:fontFamily="@font/poppins"/>
 
@@ -350,27 +397,71 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
+                        android:layout_marginTop="@dimen/_10sdp">
 
+                        <!-- Background Image -->
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/featuredImage2"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_120sdp"
-                            android:src="@drawable/banner_bg"
                             android:scaleType="centerCrop"
-                            app:shapeAppearance="@style/PosterImage"/>
+                            android:src="@drawable/banner_bg"
+                            app:shapeAppearance="@style/PosterImage" />
 
+                        <!-- Bookmark Icon - top right -->
                         <ImageView
+                            android:id="@+id/bookmarkIcon2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/bookmark_ic"
-                            android:id="@+id/bookmarkIcon2"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignTop="@id/featuredImage2"
+                            android:layout_alignEnd="@id/featuredImage2"
                             android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginEnd="@dimen/_8sdp"/>
+                            android:layout_marginEnd="@dimen/_8sdp" />
 
+                        <!-- Rating Badge - top left -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/ratingCard1"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/featuredImage2"
+                            android:layout_alignStart="@id/featuredImage2"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_3sdp"
+                                android:paddingHorizontal="@dimen/_8sdp">
+
+                                <TextView
+                                    android:id="@+id/ratingTxt2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/_4_8"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/_11ssp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/star1"
+                                    android:layout_marginStart="@dimen/_6sdp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
 
                     </RelativeLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -450,6 +541,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/from"
                             android:textSize="@dimen/_9ssp"
+                            android:textStyle="bold"
                             android:textColor="@color/purple"
                             android:fontFamily="@font/poppins"/>
 

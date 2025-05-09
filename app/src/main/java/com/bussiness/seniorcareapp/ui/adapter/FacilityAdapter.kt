@@ -1,12 +1,12 @@
 package com.bussiness.seniorcareapp.ui.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.bussiness.seniorcareapp.data.model.Facility
 import com.bussiness.seniorcareapp.databinding.ItemSavedFacilitiesBinding
-import androidx.core.graphics.toColorInt
 
 class FacilityAdapter(
     private val facilityList: List<Facility>,
@@ -22,6 +22,8 @@ class FacilityAdapter(
             binding.locationTxt.text = facility.location
             binding.servicesTxt.text = facility.services
             binding.priceTxt.text = facility.price
+            binding.ratingCard.visibility = View.GONE
+
 
             // Set initial bookmark icon color
             val color = if (facility.isBookmarked) "#EA5B60" else "#FFFFFF"

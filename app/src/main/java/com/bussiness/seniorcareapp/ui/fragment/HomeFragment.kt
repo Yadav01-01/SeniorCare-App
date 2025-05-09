@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var exploreFacilityAdapter: ExFacilitiesAdapter
     private lateinit var featuredFacilityAdapter: FtProviderAdapter
-    private var sessionManager: SessionManager? = null
+    private lateinit var sessionManager: SessionManager
+
 
     private val bannerList = listOf(
         BannerData(R.drawable.banner_bg, "Explore trusted senior living facilities tailored to your needs. Search, compare, and connect effortlessly today!"),
@@ -70,27 +71,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sessionManager = SessionManager(requireContext())
 
-        if (sessionManager?.isLoggedIn() == false) {                 // skip login
-            binding.fpRecyclerView.visibility = View.GONE
-            binding.blurImageLogin.visibility = View.VISIBLE
-            binding.lockedTxt.text = "Please Login to access the Provider"
-            binding.btnLoginNow.text = "Login Now"
-            binding.btnLoginNow.setOnClickListener { val intent = Intent(requireContext(), AuthActivity::class.java)
-                startActivity(intent)
-            }
-            binding.seeAllFacilities.visibility = View.GONE
-            binding.credits.visibility = View.VISIBLE
-        } else {                                                     // on login
-            binding.fpRecyclerView.visibility = View.GONE
-            binding.blurImageLogin.visibility = View.VISIBLE
-            binding.lockedTxt.text = "You do not have enough credits.\nPlease purchase a subscription plan\nto access more provider information."
-            binding.btnLoginNow.text = "Subscription plan"
-            binding.btnLoginNow.setOnClickListener {
-                binding.blurImageLogin.visibility = View.GONE
-                binding.fpRecyclerView.visibility = View.VISIBLE
-            }
-            binding.seeAllFacilities.visibility = View.VISIBLE
-            binding.credits.visibility = View.GONE
+        if (!sessionManager.isLoggedIn()) {
+            showLoginPrompt()
+        } else {
+            showSubscriptionPrompt()
         }
 
         setupBanner()
@@ -106,7 +90,7 @@ class HomeFragment : Fragment() {
         viewPager.adapter = BannerAdapter(bannerList)
 
         TabLayoutMediator(tabIndicator, viewPager) { tab, _ ->
-            tab.setCustomView(R.layout.custom_tab)
+            tab.setCustomView(R.layout.banner_tab)
         }.attach()
 
         updateTabDots(0) // Set initial selected dot
@@ -133,7 +117,7 @@ class HomeFragment : Fragment() {
         featuredFacilityAdapter = FtProviderAdapter(
             featuredFacilityList,
             onViewProfileClick = {
-                Toast.makeText(requireContext(), "View Profile Clicked", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.facilityDetailFragment)
             },
             onCallClick = {
                 Toast.makeText(requireContext(), "Call Icon Clicked", Toast.LENGTH_SHORT).show()
@@ -172,11 +156,45 @@ class HomeFragment : Fragment() {
         for (i in 0 until tabLayout.tabCount) {
             val tab = tabLayout.getTabAt(i)
             val imageView = tab?.customView?.findViewById<ImageView>(R.id.bannerTabDot)
-            imageView?.setImageResource(
-                if (i == selectedPosition) R.drawable.banner_tab else R.drawable.non_selected_banner_tab
-            )
+            if (i == selectedPosition) {
+                imageView?.setImageResource(R.drawable.banner_tab) // selected
+            } else {
+                imageView?.setImageResource(R.drawable.non_selected_banner_tab) // non-selected
+            }
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun showLoginPrompt() {
+        binding.fpRecyclerView.visibility = View.GONE
+        binding.blurImageLogin.visibility = View.VISIBLE
+        binding.lockedTxt.text = "Please Login to access the Provider"
+        binding.btnLoginNow.text = "Login Now"
+        binding.btnLoginNow.setOnClickListener {
+            startActivity(Intent(requireContext(), AuthActivity::class.java))
+        }
+        binding.seeAllFacilities.visibility = View.GONE
+        binding.credits.visibility = View.VISIBLE
+        binding.ratingCard.visibility = View.VISIBLE
+        binding.ratingCard1.visibility = View.VISIBLE
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showSubscriptionPrompt() {
+        binding.fpRecyclerView.visibility = View.GONE
+        binding.blurImageLogin.visibility = View.VISIBLE
+        binding.lockedTxt.text = "You do not have enough credits.\nPlease purchase a subscription plan\nto access more provider information."
+        binding.btnLoginNow.text = "Subscription plan"
+        binding.btnLoginNow.setOnClickListener {
+            binding.blurImageLogin.visibility = View.GONE
+            binding.fpRecyclerView.visibility = View.VISIBLE
+        }
+        binding.seeAllFacilities.visibility = View.VISIBLE
+        binding.credits.visibility = View.GONE
+        binding.ratingCard.visibility = View.GONE
+        binding.ratingCard1.visibility = View.GONE
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

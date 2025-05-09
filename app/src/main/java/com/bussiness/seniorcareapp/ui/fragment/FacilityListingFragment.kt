@@ -3,18 +3,24 @@ package com.bussiness.seniorcareapp.ui.fragment
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
@@ -30,6 +36,7 @@ import com.bussiness.seniorcareapp.ui.activity.MainActivity
 import com.bussiness.seniorcareapp.ui.adapter.AmenitiesAdapter
 import com.bussiness.seniorcareapp.ui.adapter.FacilityListingAdapter
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.text.HtmlCompat
 
 class FacilityListingFragment : Fragment() {
 
@@ -73,17 +80,21 @@ class FacilityListingFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.facilityRecyclerView.isNestedScrollingEnabled = false
-        binding.facilityRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            facilityListingAdapter = FacilityListingAdapter(facilityList) { facility ->
+        binding.facilityRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        facilityListingAdapter = FacilityListingAdapter(
+            facilityList,
+            onBookmarkClick = {
+                Toast.makeText(requireContext(), "${it.name} bookmarked: ${it.isBookmarked}", Toast.LENGTH_SHORT).show()
+            },
+                    onItemClick = { facility ->
                 if (isForCompare) {
                     // Return selected facility ID to CompareFacilitiesFragment
                     val result = Bundle().apply {
                         putString("selected_facility_id", facility.id)
                     }
                     setFragmentResult("facility_selected", result)
-                    findNavController().popBackStack() // go back to compare screen
+                    findNavController().popBackStack()
                 } else {
                     // Normal flow - open details
                     val bundle = Bundle().apply {
@@ -92,9 +103,11 @@ class FacilityListingFragment : Fragment() {
                     findNavController().navigate(R.id.facilityDetailFragment, bundle)
                 }
             }
-            adapter = facilityListingAdapter
-        }
+        )
+
+        binding.facilityRecyclerView.adapter = facilityListingAdapter
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun clickListener() {
@@ -121,6 +134,38 @@ class FacilityListingFragment : Fragment() {
         filterBinding.filterAmenitiesRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = amenitiesAdapter
+        }
+
+
+
+        filterBinding.priceSlider.addOnChangeListener { slider, _, _ ->
+            val values = filterBinding.priceSlider.values
+            if (values.size >= 2) {
+                val minPrice = values[0].toInt()
+                val maxPrice = values[1].toInt()
+
+                val fullText = "Price range from $ $minPrice to $ $maxPrice"
+                val spannable = SpannableStringBuilder(fullText)
+
+                val minStart = fullText.indexOf("$ $minPrice")
+                val minEnd = minStart + "$ $minPrice".length
+                val maxStart = fullText.indexOf("$ $maxPrice")
+                val maxEnd = maxStart + "$ $maxPrice".length
+
+                spannable.setSpan(StyleSpan(Typeface.BOLD), minStart, minEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(RelativeSizeSpan(1.2f), minStart, minEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                spannable.setSpan(StyleSpan(Typeface.BOLD), maxStart, maxEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(RelativeSizeSpan(1.2f), maxStart, maxEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                filterBinding.priceRangeText.text = spannable
+
+                // Use min and max
+            } else {
+                Log.e("FilterDialog", "Unexpected slider values: $values")
+            }
+
+
         }
 
         filterBinding.apply {
@@ -191,6 +236,10 @@ class FacilityListingFragment : Fragment() {
         items.forEachIndexed { index, item ->
             val textView = TextView(requireContext()).apply {
                 text = item
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
                 setPadding(24, 20, 24, 20)
                 setTextColor(Color.BLACK)
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
@@ -200,6 +249,7 @@ class FacilityListingFragment : Fragment() {
                     popupWindow.dismiss()
                 }
             }
+
 
             binding.dropdownContainer.addView(textView)
 

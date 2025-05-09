@@ -34,6 +34,10 @@ class CompareFacilitiesFragment : Fragment() {
             selectedFacilityId?.let {
                 // TODO: Fetch and show facility details using ID (e.g., from local list or API)
                 updateFacility1(it)
+                binding.apply {
+                    brochure.visibility = View.VISIBLE
+                    llDownload.visibility = View.VISIBLE
+                }
             }
         }
 

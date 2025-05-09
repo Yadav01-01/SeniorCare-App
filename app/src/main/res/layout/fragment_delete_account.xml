@@ -106,22 +106,27 @@
 
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/feedbackCard"
                     android:layout_width="match_parent"
-                    android:layout_height="115dp"
+                    android:layout_height="@dimen/_100sdp"
                     app:cardBackgroundColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
                     app:cardCornerRadius="8dp">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/feedbackTxt"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="@dimen/_100sdp"
                         android:hint="@string/please_share_your_feedback_optional"
-                        android:textSize="@dimen/_8ssp"
-                        android:editable="true"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lines="8"
+                        android:padding="@dimen/_9sdp"
+                        android:background="@color/white"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/poppins"
-                        android:padding = "@dimen/_8sdp"
-                        tools:ignore="TextViewEdits" />
+                        android:textSize="@dimen/_8ssp"
+                        android:textColorHint="#333333" />
 
                 </com.google.android.material.card.MaterialCardView>
                 
@@ -134,6 +139,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:fontFamily="@font/poppins"
                     android:padding="@dimen/_8sdp"
                     android:textAlignment="center"

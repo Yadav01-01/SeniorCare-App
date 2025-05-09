@@ -134,25 +134,19 @@
             android:fontFamily="@font/poppins"
             android:text="@string/price_range_from_5000_to_100000"
             android:textColor="@color/black"
-            android:textSize="@dimen/_9ssp" />
+            android:textSize="@dimen/_10ssp" />
 
         <com.google.android.material.slider.RangeSlider
-            android:id="@+id/rangeSlider"
+            android:id="@+id/priceSlider"
+            style="@style/CustomRangeSliderStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
             android:valueFrom="5000"
             android:valueTo="100000"
-            android:stepSize="1000"
-            app:trackHeight="@dimen/_2sdp"
-            app:thumbRadius="@dimen/_8sdp"
-            app:haloRadius="0dp"
-            app:trackColorInactive="@color/grey"
-            app:trackColorActive="@color/purple"
-            app:thumbColor="@color/purple"
-            app:haloColor="@android:color/transparent"
-            app:tickVisible="false"
-            app:labelBehavior="gone" />
+            app:values="@array/initial_values"
+            app:labelBehavior="gone"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
 
 
     </LinearLayout>

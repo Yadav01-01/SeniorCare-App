@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             binding.textProfile.text = "Profile"
         }else{
             binding.textProfile.text = "Login/SignUp"
+
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -104,7 +105,12 @@ class MainActivity : AppCompatActivity() {
             }
             profileFragment.setOnClickListener {
                 updateBottomNavSelection("profile")
-                navController.navigate(R.id.profileFragment)
+                if (sessionManager.isLoggedIn()) {
+                    navController.navigate(R.id.profileFragment)
+                }else{
+                    val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
@@ -182,6 +188,9 @@ class MainActivity : AppCompatActivity() {
             navigationView.menu.findItem(R.id.navFAQ).isVisible = false
             navigationView.menu.findItem(R.id.navLogout).isVisible = false
         }
+        val bundle = Bundle().apply {
+            putString("sideMenu", "Privacy Policy")
+        }
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -190,11 +199,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navSubscriptionPlans -> navController.navigate(R.id.subscriptionFragment)
                 R.id.navContactUs -> navController.navigate(R.id.contactUsFragment)
                 R.id.navCompareFacility -> navController.navigate(R.id.compareFacilitiesFragment)
-                R.id.navAccountPrivacy -> navController.navigate(R.id.aboutUsFragment)
+                R.id.navAccountPrivacy -> navController.navigate(R.id.aboutUsFragment, bundle)
                 R.id.navFAQ -> navController.navigate(R.id.faqFragment)
-                R.id.navLogout -> {
-                    dialogLogout()
-                }
+                R.id.navLogout -> { dialogLogout() }
             }
             closeDrawer()
             true

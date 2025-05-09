@@ -118,6 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
+                        android:layout_margin="@dimen/_2sdp"
                         android:elevation="6dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_40sdp">
@@ -163,6 +164,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_40sdp"
+                                android:paddingBottom="@dimen/_4sdp"
                                 android:paddingStart="0dp"/>
 
                             <!-- End icon (edit pen) -->
@@ -192,6 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:elevation="6dp"
+                        android:layout_margin="@dimen/_2sdp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_40sdp">
 
@@ -236,6 +239,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_50sdp"
+                                android:paddingBottom="@dimen/_4sdp"
                                 android:paddingStart="0dp"/>
 
                             <!-- End icon (edit pen) -->
@@ -270,6 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
+                        android:layout_margin="@dimen/_2sdp"
                         android:elevation="6dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_40sdp">
@@ -315,6 +320,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_50sdp"
+                                android:paddingBottom="@dimen/_4sdp"
                                 android:paddingStart="0dp"/>
 
                             <!-- End icon (edit pen) -->
@@ -350,6 +356,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:elevation="6dp"
+                        android:layout_margin="@dimen/_2sdp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_40sdp">
 
@@ -393,6 +400,7 @@
                                 android:textSize="@dimen/_12ssp"
                                 android:gravity="center_vertical"
                                 android:paddingTop="2dp"
+                                android:paddingBottom="@dimen/_4sdp"
                                 android:paddingEnd="@dimen/_40sdp"
                                 android:paddingStart="0dp"/>
 

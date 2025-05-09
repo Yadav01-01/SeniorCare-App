@@ -7,7 +7,7 @@ import com.bussiness.seniorcareapp.data.model.SmallImageItem
 import com.bussiness.seniorcareapp.databinding.ItemImageBinding
 
 class DetailImageAdapter(
-    private val items: List<SmallImageItem>
+    private val items: List<SmallImageItem>,private val onItemClickListener: (SmallImageItem) -> Unit
 ) : RecyclerView.Adapter<DetailImageAdapter.SmallImageViewHolder>() {
 
     inner class SmallImageViewHolder(val binding: ItemImageBinding) :
@@ -22,6 +22,9 @@ class DetailImageAdapter(
         val item = items[position]
 
         holder.binding.smallImage.setImageResource(item.imageResId)
+        holder.binding.root.setOnClickListener {
+            onItemClickListener(item)
+        }
     }
 
     override fun getItemCount(): Int = items.size

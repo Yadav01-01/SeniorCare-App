@@ -59,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
+            android:layout_marginTop="@dimen/_15sdp"
             android:background="@android:color/transparent"
             android:scrollbars="none">
 
@@ -146,7 +147,7 @@
                 <!-- Map Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_160sdp"
+                    android:layout_height="@dimen/_150sdp"
                     app:cardCornerRadius="@dimen/_15sdp"
                     app:cardElevation="4dp">
 

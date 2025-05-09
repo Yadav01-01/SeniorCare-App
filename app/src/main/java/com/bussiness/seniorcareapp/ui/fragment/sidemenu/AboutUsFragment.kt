@@ -16,6 +16,8 @@ class AboutUsFragment : Fragment() {
     private var _binding: FragmentAboutUsBinding? = null
     private val binding get() = _binding!!
     private lateinit var sessionManager: SessionManager
+    private var isPrivacyExpanded = false
+    private var isTermsExpanded = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +37,20 @@ class AboutUsFragment : Fragment() {
             binding.llDeleteAccountBtn.visibility = View.VISIBLE
         }
 
+        val sideMenuValue = arguments?.getString("sideMenu")
+
+        isPrivacyExpanded = sideMenuValue == "Privacy Policy"
+        isTermsExpanded = false
+
+        binding.privacyPolicyContent.visibility = if (isPrivacyExpanded) View.VISIBLE else View.GONE
+        binding.termsConditionContent.visibility = View.GONE
+
+
         setUpClickListeners()
         setupExpandableAboutUsTextView()
     }
 
     private fun setUpClickListeners() {
-        var isPrivacyExpanded = false
-        var isTermsExpanded = false
 
         binding.apply {
             backIcon.setOnClickListener {

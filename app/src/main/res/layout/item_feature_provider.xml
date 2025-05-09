@@ -34,7 +34,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/purple"
-            android:fontFamily="@font/poppins" />
+            android:fontFamily="@font/poppins_bold" />
 
         <TextView
             android:id="@+id/descriptionText"

@@ -12,16 +12,16 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/_60sdp" />
+         />
 
     <LinearLayout
         android:id="@+id/indicatorLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tabIndicator"
-        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_108sdp"
         android:orientation="horizontal" />
 
     <com.google.android.material.tabs.TabLayout
@@ -30,13 +30,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_75sdp"
+        android:layout_marginStart="@dimen/_18sdp"
         android:background="@android:color/transparent"
         app:tabGravity="center"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="0dp"
         app:tabMinWidth="5dp"
+        app:tabPaddingStart="1dp"
+        app:tabPaddingEnd="1dp"
         app:tabMode="fixed" />
 
 </RelativeLayout>
