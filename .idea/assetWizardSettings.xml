@@ -319,8 +319,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="selected_bookmark_ic" />
-                            <entry key="sourceFile" value="C:\Users\User\Downloads\selected_bookmark_ic.svg" />
+                            <entry key="outputName" value="select_bm" />
+                            <entry key="sourceFile" value="C:\Users\User\Downloads\select_bm.svg" />
                           </map>
                         </option>
                       </PersistentState>

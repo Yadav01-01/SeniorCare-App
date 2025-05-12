@@ -82,6 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/_3sdp"
+                        app:strokeWidth="0dp"
                         app:cardBackgroundColor="#E9E9E9"
                         app:cardCornerRadius="@dimen/_5sdp"
                         app:cardElevation="@dimen/_1sdp">
@@ -113,6 +114,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:strokeWidth="0dp"
                         android:layout_marginStart="@dimen/_3sdp"
                         app:cardBackgroundColor="#E9E9E9"
                         app:cardCornerRadius="@dimen/_5sdp"
@@ -636,6 +638,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/facilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"

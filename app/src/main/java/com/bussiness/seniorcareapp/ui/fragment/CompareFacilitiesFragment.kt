@@ -69,7 +69,7 @@ class CompareFacilitiesFragment : Fragment() {
                 bookmarkIcon.setColorFilter(color.toColorInt())
             }
 
-            arrowIc.setOnClickListener {
+            facilities.setOnClickListener {
                 findNavController().navigate(R.id.facilityDetailFragment)
             }
         }

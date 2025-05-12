@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.databinding.ItemDeleteFeedbackBinding
 
 class ReasonAdapter(

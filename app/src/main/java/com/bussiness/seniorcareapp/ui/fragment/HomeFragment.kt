@@ -134,19 +134,28 @@ class HomeFragment : Fragment() {
         var isBookmarked2 = false
         binding.apply {
             ivMenu.setOnClickListener  { (activity as? MainActivity)?.openDrawer() }
-            arrowIc.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
-            arrowIc1.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
+            ll1.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
+            ll2.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
             seeAllFacilities.setOnClickListener { findNavController() .navigate(R.id.facilityListingFragment)}
             bookmarkIcon.setOnClickListener {
                 isBookmarked1 = !isBookmarked1
-                val color = if (isBookmarked1) "#EA5B60" else "#FFFFFF" // or original color
-                bookmarkIcon.setColorFilter(color.toColorInt())
+                val iconRes = if (isBookmarked1) {
+                    R.drawable.bookmark_ // bookmarked icon
+                } else {
+                    R.drawable.select_bm // default icon
+                }
+                bookmarkIcon.setImageResource(iconRes)
             }
-            bookmarkIcon2.setOnClickListener{
+            bookmarkIcon2.setOnClickListener {
                 isBookmarked2 = !isBookmarked2
-                val color = if (isBookmarked2) "#EA5B60" else "#FFFFFF" // or original color
-                bookmarkIcon2.setColorFilter(color.toColorInt())
+                val iconRes = if (isBookmarked2) {
+                    R.drawable.bookmark_ // bookmarked icon
+                } else {
+                    R.drawable.select_bm // default icon
+                }
+                bookmarkIcon2.setImageResource(iconRes)
             }
+
 
         }
     }

@@ -22,7 +22,7 @@ class FAQAdapter(private val faqList: List<FAQItem>) : RecyclerView.Adapter<FAQA
             )
 
             // Expand/Collapse when clicking the icon
-            binding.imgExpand.setOnClickListener {
+            binding.root.setOnClickListener {
                 faqItem.isExpanded = !faqItem.isExpanded
                 notifyItemChanged(position) // Update the specific item
             }

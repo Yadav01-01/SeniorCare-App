@@ -53,9 +53,7 @@ class DeleteAccountFragment : Fragment() {
                     binding.feedbackCard.visibility = View.VISIBLE
                     binding.deleteAccountBtn.visibility = View.VISIBLE
                 },
-                onItemClick = { selectedReason ->
-                    dialogDelete()
-                }
+                onItemClick = { selectedReason -> dialogDelete() }
             )
             adapter = deleteReasonAdapter
         }

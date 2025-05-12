@@ -209,6 +209,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -231,7 +232,7 @@
                             android:id="@+id/bookmarkIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/bookmark_ic"
+                            android:src="@drawable/bookmark_"
                             android:layout_alignTop="@id/featuredImage"
                             android:layout_alignEnd="@id/featuredImage"
                             android:layout_marginTop="@dimen/_8sdp"
@@ -390,6 +391,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -413,7 +415,7 @@
                             android:id="@+id/bookmarkIcon2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/bookmark_ic"
+                            android:src="@drawable/bookmark_"
                             android:layout_alignTop="@id/featuredImage2"
                             android:layout_alignEnd="@id/featuredImage2"
                             android:layout_marginTop="@dimen/_8sdp"

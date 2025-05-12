@@ -21,7 +21,7 @@
 
     <style name="CustomRangeSliderStyle" parent="Widget.MaterialComponents.Slider">
         <!-- Optional: Customize further -->
-        <item name="trackHeight">4dp</item>
+        <item name="trackHeight">3dp</item>
         <item name="thumbColor">#6B1D45</item>
         <item name="trackColorActive">#6B1D45</item>
         <item name="trackColorInactive">#CCCCCC</item>

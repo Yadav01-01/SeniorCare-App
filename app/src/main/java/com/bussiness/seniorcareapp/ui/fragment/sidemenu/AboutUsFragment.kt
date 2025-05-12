@@ -45,7 +45,6 @@ class AboutUsFragment : Fragment() {
         binding.privacyPolicyContent.visibility = if (isPrivacyExpanded) View.VISIBLE else View.GONE
         binding.termsConditionContent.visibility = View.GONE
 
-
         setUpClickListeners()
         setupExpandableAboutUsTextView()
     }
@@ -86,7 +85,6 @@ class AboutUsFragment : Fragment() {
             }
         }
     }
-
 
     private fun setupExpandableAboutUsTextView() {
         val collapsedLines = 4

@@ -26,44 +26,50 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
 }
 
 dependencies {
-
+    // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    //material 3
+    implementation (libs.material.v1110)
+//material 2
+//    implementation (libs.material)
+
+
+    // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // OTP Input
+    implementation(libs.android.otpview.pinview)
+    implementation(libs.otpview)
+//    implementation (libs.otptextview)
+
+
+    // Screen size support
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //material 3
-    implementation (libs.material.v1110)
-    //OTP input
-    implementation (libs.android.otpview.pinview)
-    implementation (libs.otpview)
-    //navigation
-    implementation (libs.androidx.navigation.fragment.ktx)
-    implementation (libs.androidx.navigation.ui.ktx)
-    //spd
-    implementation (libs.sdp.android)
-    implementation (libs.ssp.android)
-    //material 2
-    implementation (libs.material)
-
-
-
 }

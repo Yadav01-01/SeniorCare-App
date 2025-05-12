@@ -44,6 +44,7 @@ class FacilityListingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var facilityListingAdapter: FacilityListingAdapter
+    private var isForCompare: Boolean = false
 
     // Sample facility data
     private val facilityList = List(6) {
@@ -56,8 +57,6 @@ class FacilityListingFragment : Fragment() {
             id = "${1000 + it}" //  a unique ID for passing back
         )
     }
-
-    private var isForCompare: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -136,8 +135,6 @@ class FacilityListingFragment : Fragment() {
             adapter = amenitiesAdapter
         }
 
-
-
         filterBinding.priceSlider.addOnChangeListener { slider, _, _ ->
             val values = filterBinding.priceSlider.values
             if (values.size >= 2) {
@@ -164,8 +161,6 @@ class FacilityListingFragment : Fragment() {
             } else {
                 Log.e("FilterDialog", "Unexpected slider values: $values")
             }
-
-
         }
 
         filterBinding.apply {
@@ -223,12 +218,7 @@ class FacilityListingFragment : Fragment() {
 
         binding.dropdownContainer.removeAllViews()
 
-        val popupWindow = PopupWindow(
-            binding.root,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            true
-        ).apply {
+        val popupWindow = PopupWindow(binding.root, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
             elevation = 10f
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         }
@@ -236,10 +226,7 @@ class FacilityListingFragment : Fragment() {
         items.forEachIndexed { index, item ->
             val textView = TextView(requireContext()).apply {
                 text = item
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 setPadding(24, 20, 24, 20)
                 setTextColor(Color.BLACK)
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
@@ -250,15 +237,12 @@ class FacilityListingFragment : Fragment() {
                 }
             }
 
-
             binding.dropdownContainer.addView(textView)
 
             // Add divider except after the last item
             if (index != items.lastIndex) {
                 val divider = View(requireContext()).apply {
-                    layoutParams = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, 1
-                    )
+                    layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1)
                     setBackgroundColor(Color.LTGRAY)
                 }
                 binding.dropdownContainer.addView(divider)

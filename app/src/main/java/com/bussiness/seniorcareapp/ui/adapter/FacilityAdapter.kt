@@ -29,7 +29,7 @@ class FacilityAdapter(
             val color = if (facility.isBookmarked) "#EA5B60" else "#FFFFFF"
             binding.bookmarkIcon.setColorFilter(color.toColorInt())
 
-            binding.arrowIc.setOnClickListener {
+            binding.root.setOnClickListener {
                 onItemClick(facility)
             }
 

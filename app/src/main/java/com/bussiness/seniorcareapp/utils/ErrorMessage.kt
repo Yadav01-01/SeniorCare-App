@@ -1,7 +1,7 @@
 package com.bussiness.seniorcareapp.utils
 
 object ErrorMessage {
-    const val EMAIL_ERROR  = "Please enter a valid email address"
+    const val EMAIL_ERROR  = "Please enter a valid email address/Phone number"
     const val PASSWORD_ERROR  = "Please enter your password"
     const val PASSWORD_PATTERN  = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#\$%^&+=!]).{8,}\$"
     const val PASSWORD_PATTERN_ERROR  = "Password must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character, and be 8+ characters"

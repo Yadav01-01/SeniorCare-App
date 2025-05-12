@@ -26,6 +26,7 @@
 
         <!-- Arrow Icon -->
         <ImageView
+            android:id="@+id/arrowIc"
             android:layout_width="@dimen/_12sdp"
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/arrow_right"
