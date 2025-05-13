@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
-    tools:context=".ui.fragment.FacilityListingFragment">
+    tools:context=".ui.fragment.mainscreen.FacilityListingFragment">
 
     <!-- Top Bar -->
     <com.google.android.material.card.MaterialCardView

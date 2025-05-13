@@ -17,6 +17,7 @@ import com.bussiness.seniorcareapp.databinding.ActivityOnboardingBinding
 import com.bussiness.seniorcareapp.ui.adapter.OnboardingAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlin.math.abs
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -85,6 +86,9 @@ class OnboardingActivity : AppCompatActivity() {
                 updateIndicators(position) // Update custom indicators
             }
         })
+
+        // Apply custom swipe animation
+        applySwipeAnimation()
     }
 
     private fun updateTabDots(selectedPosition: Int) {
@@ -111,7 +115,6 @@ class OnboardingActivity : AppCompatActivity() {
             val dotLine = view.findViewById<View>(R.id.dot)
             dotLine.visibility = if (i < 2) View.VISIBLE else View.INVISIBLE
 
-
             indicatorLayout.addView(view)
         }
     }
@@ -122,5 +125,20 @@ class OnboardingActivity : AppCompatActivity() {
             dot.setImageResource(if (i == position) R.drawable.selected_ic_home else R.drawable.ic_home)
         }
     }
-}
 
+    // Apply custom swipe animation for ViewPager2
+    private fun applySwipeAnimation() {
+        viewPager.setPageTransformer { page, position ->
+            page.alpha = 1 - abs(position)
+            page.translationX = page.width * -position
+
+            if (position > 0) {
+                page.scaleX = 1 - position * 0.3f
+                page.scaleY = 1 - position * 0.3f
+            } else {
+                page.scaleX = 1 + position * 0.3f
+                page.scaleY = 1 + position * 0.3f
+            }
+        }
+    }
+}

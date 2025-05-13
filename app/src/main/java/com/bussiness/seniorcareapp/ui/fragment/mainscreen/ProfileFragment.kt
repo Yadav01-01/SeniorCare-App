@@ -1,4 +1,4 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.Manifest
 import android.app.Activity

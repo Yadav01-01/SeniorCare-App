@@ -1,4 +1,4 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.os.Bundle
 import android.text.Html
@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bussiness.seniorcareapp.R

@@ -1,4 +1,4 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -20,7 +20,6 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
@@ -36,7 +35,6 @@ import com.bussiness.seniorcareapp.ui.activity.MainActivity
 import com.bussiness.seniorcareapp.ui.adapter.AmenitiesAdapter
 import com.bussiness.seniorcareapp.ui.adapter.FacilityListingAdapter
 import androidx.core.graphics.drawable.toDrawable
-import androidx.core.text.HtmlCompat
 
 class FacilityListingFragment : Fragment() {
 

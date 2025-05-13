@@ -1,8 +1,7 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +24,6 @@ import com.bussiness.seniorcareapp.ui.adapter.ExFacilitiesAdapter
 import com.bussiness.seniorcareapp.ui.adapter.FtProviderAdapter
 import com.bussiness.seniorcareapp.utils.SessionManager
 import com.google.android.material.tabs.TabLayoutMediator
-import androidx.core.graphics.toColorInt
 
 class HomeFragment : Fragment() {
 

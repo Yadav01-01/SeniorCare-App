@@ -1,4 +1,4 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

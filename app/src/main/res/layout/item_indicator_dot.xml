@@ -16,6 +16,5 @@
         android:id="@+id/dot"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
         android:background="@drawable/dotted_line_bg" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.bussiness.seniorcareapp.ui.fragment
+package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.annotation.SuppressLint
 import android.os.Bundle

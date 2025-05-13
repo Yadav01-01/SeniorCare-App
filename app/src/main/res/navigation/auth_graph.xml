@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.authentication.LoginFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.authscreen.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.authentication.ForgotPasswordFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.authscreen.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" />
     <fragment
         android:id="@+id/verifyAccountFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.authentication.VerifyAccountFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.authscreen.VerifyAccountFragment"
         android:label="fragment_verify_account"
         tools:layout="@layout/fragment_verify_account" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.authentication.RegisterFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.authscreen.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/createPasswordFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.authentication.CreatePasswordFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.authscreen.CreatePasswordFragment"
         android:label="fragment_create_password"
         tools:layout="@layout/fragment_create_password" />
 </navigation>

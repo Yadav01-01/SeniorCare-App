@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.HomeFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/compareFacilitiesFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.CompareFacilitiesFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.CompareFacilitiesFragment"
         android:label="fragment_compare_facilities"
         tools:layout="@layout/fragment_compare_facilities" />
     <fragment
         android:id="@+id/savedFacilitiesFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.SavedFacilitiesFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.SavedFacilitiesFragment"
         android:label="fragment_saved_facilities"
         tools:layout="@layout/fragment_saved_facilities" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.ProfileFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -57,12 +57,12 @@
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/facilityListingFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.FacilityListingFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.FacilityListingFragment"
         android:label="fragment_facility_listing"
         tools:layout="@layout/fragment_facility_listing" />
     <fragment
         android:id="@+id/facilityDetailFragment"
-        android:name="com.bussiness.seniorcareapp.ui.fragment.DetailFragment"
+        android:name="com.bussiness.seniorcareapp.ui.fragment.mainscreen.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>
