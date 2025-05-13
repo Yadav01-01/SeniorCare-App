@@ -1,6 +1,7 @@
 package com.bussiness.seniorcareapp.ui.fragment.mainscreen
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -81,15 +82,18 @@ class ProfileFragment : Fragment() {
         setupClickListeners()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupClickListeners() = with(binding) {
         editProfile.setOnClickListener {
             toggleEditMode(true)
             editProfile.visibility = View.GONE
+            title.text = "Edit Profile"
         }
 
         saveChanges.setOnClickListener {
             toggleEditMode(false)
             editProfile.visibility = View.VISIBLE
+            title.text = "Profile"
         }
 
         editCameraBtn.setOnClickListener {

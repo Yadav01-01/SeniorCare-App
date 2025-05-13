@@ -42,7 +42,7 @@
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/poppins_bold"
                     android:text="@string/basic_plan"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"/>
 
