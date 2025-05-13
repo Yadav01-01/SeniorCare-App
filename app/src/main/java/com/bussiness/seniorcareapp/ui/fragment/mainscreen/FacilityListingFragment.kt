@@ -122,7 +122,7 @@ class FacilityListingFragment : Fragment() {
         val filterBinding = DialogFilterBinding.inflate(layoutInflater)
         dialog.setContentView(filterBinding.root)
 
-        val amenityList = List(21) { Amenity("Amenity ${it + 1}") }
+        val amenityList = List(21) { Amenity("Amenities") }
 
         val amenitiesAdapter = AmenitiesAdapter(amenityList) { amenity, isChecked ->
             amenity.isSelected = isChecked
