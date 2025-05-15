@@ -124,18 +124,56 @@
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_marginHorizontal="@dimen/_15sdp">
 
-        <!-- Price Range Text -->
-        <TextView
-            android:id="@+id/priceRangeText"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/poppins"
-            android:typeface="monospace"
-            android:text="@string/price_range_from_5000_to_100000"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10ssp" />
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/priceRangeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:textStyle="bold"
+                android:text="@string/price_range_from_5000_to_100000"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rs_5000"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:id="@+id/minPrice"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/poppins"
+                android:layout_marginHorizontal="@dimen/_3sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rs_100000"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:id="@+id/maxPrice"/>
+
+
+
+        </LinearLayout>
 
         <com.google.android.material.slider.RangeSlider
             android:id="@+id/priceSlider"

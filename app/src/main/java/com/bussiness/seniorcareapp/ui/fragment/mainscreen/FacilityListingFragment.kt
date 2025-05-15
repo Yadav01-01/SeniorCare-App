@@ -139,27 +139,17 @@ class FacilityListingFragment : Fragment() {
                 val minPrice = values[0].toInt()
                 val maxPrice = values[1].toInt()
 
-                val fullText = "Price range from $ $minPrice to $ $maxPrice"
-                val spannable = SpannableStringBuilder(fullText)
+                filterBinding.minPrice.text = "$$minPrice"
+                filterBinding.maxPrice.text = "$$maxPrice"
 
-                val minStart = fullText.indexOf("$ $minPrice")
-                val minEnd = minStart + "$ $minPrice".length
-                val maxStart = fullText.indexOf("$ $maxPrice")
-                val maxEnd = maxStart + "$ $maxPrice".length
-
-                spannable.setSpan(StyleSpan(Typeface.BOLD), minStart, minEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannable.setSpan(RelativeSizeSpan(1.2f), minStart, minEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                spannable.setSpan(StyleSpan(Typeface.BOLD), maxStart, maxEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannable.setSpan(RelativeSizeSpan(1.2f), maxStart, maxEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                filterBinding.priceRangeText.text = spannable
-
-                // Use min and max
+                // You can use minPrice and maxPrice for filtering logic
             } else {
                 Log.e("FilterDialog", "Unexpected slider values: $values")
             }
         }
+
+
+
 
         filterBinding.apply {
             crossIcon.setOnClickListener { dialog.dismiss() }

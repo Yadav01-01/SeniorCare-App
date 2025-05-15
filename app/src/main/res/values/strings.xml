@@ -176,7 +176,7 @@
     <string name="filter">Filter</string>
     <string name="type">Type</string>
     <string name="facility">Facility</string>
-    <string name="price_range_from_5000_to_100000">Price range from $ 5000 to $ 100000</string>
+    <string name="price_range_from_5000_to_100000">Price range from</string>
     <string name="rooms">Rooms:</string>
     <string name="city">city:</string>
     <string name="log_in">Log In</string>
@@ -190,4 +190,7 @@
     <string name="select_facility">Select Facility</string>
     <string name="_4_8">4.8</string>
     <string name="about">About</string>
+    <string name="rs_5000">Rs. 5000</string>
+    <string name="to">to</string>
+    <string name="rs_100000">Rs. 100000</string>
 </resources>
