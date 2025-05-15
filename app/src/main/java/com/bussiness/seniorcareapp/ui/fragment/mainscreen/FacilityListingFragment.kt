@@ -148,9 +148,6 @@ class FacilityListingFragment : Fragment() {
             }
         }
 
-
-
-
         filterBinding.apply {
             crossIcon.setOnClickListener { dialog.dismiss() }
             submitBtn.setOnClickListener { dialog.dismiss() }
