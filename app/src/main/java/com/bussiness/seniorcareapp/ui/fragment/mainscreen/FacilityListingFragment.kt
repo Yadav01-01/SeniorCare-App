@@ -216,7 +216,7 @@ class FacilityListingFragment : Fragment() {
 
         binding.dropdownContainer.removeAllViews()
 
-        val popupWindow = PopupWindow(binding.root, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
+        val popupWindow = PopupWindow(binding.root, anchor.width, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
             elevation = 10f
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         }
@@ -227,7 +227,7 @@ class FacilityListingFragment : Fragment() {
                 layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 setPadding(24, 20, 24, 20)
                 setTextColor(Color.BLACK)
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
                 typeface = resources.getFont(R.font.poppins)
                 setOnClickListener {
                     onItemClick(item)

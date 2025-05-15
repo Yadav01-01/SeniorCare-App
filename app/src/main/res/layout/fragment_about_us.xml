@@ -101,6 +101,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingStart="0dp"
                         android:text="@string/read_more"
+                        android:fontFamily="@font/poppins"
                         android:layout_gravity="end"
                         android:textColor="#EA5B60"/>
 

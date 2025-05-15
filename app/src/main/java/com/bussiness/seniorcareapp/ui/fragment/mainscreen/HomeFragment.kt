@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.data.model.BannerData
+import com.bussiness.seniorcareapp.data.model.Facility
 import com.bussiness.seniorcareapp.data.model.FtProfileItem
 import com.bussiness.seniorcareapp.data.model.PosterItem
 import com.bussiness.seniorcareapp.databinding.FragmentHomeBinding
@@ -21,6 +22,8 @@ import com.bussiness.seniorcareapp.ui.activity.AuthActivity
 import com.bussiness.seniorcareapp.ui.activity.MainActivity
 import com.bussiness.seniorcareapp.ui.adapter.BannerAdapter
 import com.bussiness.seniorcareapp.ui.adapter.ExFacilitiesAdapter
+import com.bussiness.seniorcareapp.ui.adapter.FacilityAdapter
+import com.bussiness.seniorcareapp.ui.adapter.FeaturedFacilityAdapter
 import com.bussiness.seniorcareapp.ui.adapter.FtProviderAdapter
 import com.bussiness.seniorcareapp.utils.SessionManager
 import com.google.android.material.tabs.TabLayoutMediator
@@ -31,7 +34,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var exploreFacilityAdapter: ExFacilitiesAdapter
-    private lateinit var featuredFacilityAdapter: FtProviderAdapter
+    private lateinit var featuredProviderAdapter: FtProviderAdapter
+    private lateinit var featuredFacilityAdapter: FeaturedFacilityAdapter
     private lateinit var sessionManager: SessionManager
 
 
@@ -54,6 +58,10 @@ class HomeFragment : Fragment() {
             "Assisted Living, Memory Care",
             "www.abc.com"
         )
+    }
+
+    private val facilitiesList = List(2){
+        Facility(R.drawable.banner_bg,"Facility Name","City, State, Country","Assisted Living, Memory Care","\$25.9/-","")
     }
 
     override fun onCreateView(
@@ -112,7 +120,7 @@ class HomeFragment : Fragment() {
         }
 
         // Vertical Featured Facilities
-        featuredFacilityAdapter = FtProviderAdapter(
+        featuredProviderAdapter = FtProviderAdapter(
             featuredFacilityList,
             onViewProfileClick = {
                 findNavController().navigate(R.id.facilityDetailFragment)
@@ -123,7 +131,22 @@ class HomeFragment : Fragment() {
         )
         binding.fpRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
+            adapter = featuredProviderAdapter
+        }
+        binding.fpRecyclerView.isNestedScrollingEnabled = false
+
+        binding.featuredFacilityRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            featuredFacilityAdapter = FeaturedFacilityAdapter(facilitiesList,sessionManager,
+                onItemClick = {
+                    findNavController().navigate(R.id.facilityDetailFragment)
+                },
+                onBookmarkClick = { facility ->
+                    Toast.makeText(requireContext(), "${facility.name} bookmarked: ${facility.isBookmarked}", Toast.LENGTH_SHORT).show()
+                }
+            )
             adapter = featuredFacilityAdapter
+            isNestedScrollingEnabled = false
         }
     }
 
@@ -132,27 +155,27 @@ class HomeFragment : Fragment() {
         var isBookmarked2 = false
         binding.apply {
             ivMenu.setOnClickListener  { (activity as? MainActivity)?.openDrawer() }
-            ll1.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
-            ll2.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
+//            ll1.setOnClickListener { findNavController().navigate(R.id.facilityDetailFragment) }
+//            ll2.setOnClickListener{ findNavController().navigate(R.id.facilityDetailFragment) }
             seeAllFacilities.setOnClickListener { findNavController() .navigate(R.id.facilityListingFragment)}
-            bookmarkIcon.setOnClickListener {
-                isBookmarked1 = !isBookmarked1
-                val iconRes = if (isBookmarked1) {
-                    R.drawable.bookmark_ // bookmarked icon
-                } else {
-                    R.drawable.select_bm // default icon
-                }
-                bookmarkIcon.setImageResource(iconRes)
-            }
-            bookmarkIcon2.setOnClickListener {
-                isBookmarked2 = !isBookmarked2
-                val iconRes = if (isBookmarked2) {
-                    R.drawable.bookmark_ // bookmarked icon
-                } else {
-                    R.drawable.select_bm // default icon
-                }
-                bookmarkIcon2.setImageResource(iconRes)
-            }
+//            bookmarkIcon.setOnClickListener {
+//                isBookmarked1 = !isBookmarked1
+//                val iconRes = if (isBookmarked1) {
+//                    R.drawable.bookmark_ // bookmarked icon
+//                } else {
+//                    R.drawable.select_bm // default icon
+//                }
+//                bookmarkIcon.setImageResource(iconRes)
+//            }
+//            bookmarkIcon2.setOnClickListener {
+//                isBookmarked2 = !isBookmarked2
+//                val iconRes = if (isBookmarked2) {
+//                    R.drawable.bookmark_ // bookmarked icon
+//                } else {
+//                    R.drawable.select_bm // default icon
+//                }
+//                bookmarkIcon2.setImageResource(iconRes)
+//            }
 
 
         }
@@ -182,8 +205,8 @@ class HomeFragment : Fragment() {
         }
         binding.seeAllFacilities.visibility = View.GONE
         binding.credits.visibility = View.VISIBLE
-        binding.ratingCard.visibility = View.VISIBLE
-        binding.ratingCard1.visibility = View.VISIBLE
+//        binding.ratingCard.visibility = View.VISIBLE
+//        binding.ratingCard1.visibility = View.VISIBLE
     }
 
     @SuppressLint("SetTextI18n")
@@ -198,8 +221,8 @@ class HomeFragment : Fragment() {
         }
         binding.seeAllFacilities.visibility = View.VISIBLE
         binding.credits.visibility = View.GONE
-        binding.ratingCard.visibility = View.GONE
-        binding.ratingCard1.visibility = View.GONE
+//        binding.ratingCard.visibility = View.GONE
+//        binding.ratingCard1.visibility = View.GONE
     }
 
 

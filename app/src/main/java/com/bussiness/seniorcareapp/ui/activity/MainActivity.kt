@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         if (sessionManager.isLoggedIn() || sessionManager.isSkippedLogin()) {
             navController.navigate(R.id.homeFragment)
         } else {
-            navController.navigate(R.id.loginFragment)
+//            navController.navigate(R.id.loginFragment)
         }
 
         if (sessionManager.isLoggedIn()) {
@@ -64,6 +64,16 @@ class MainActivity : AppCompatActivity() {
             binding.textProfile.text = "Login/SignUp"
 
         }
+
+        val fragmentToOpen = intent.getStringExtra("aboutUs")
+
+        if (fragmentToOpen == "Terms & condition" || fragmentToOpen == "Privacy Policy") {
+            val bundle = Bundle().apply {
+                putString("aboutUs", fragmentToOpen)
+            }
+            navController.navigate(R.id.aboutUsFragment, bundle)
+        }
+
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val visibleDestinations = setOf(

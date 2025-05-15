@@ -106,10 +106,13 @@ class LoginFragment : Fragment() {
 
     private fun dataValidation(): Boolean {
         binding.apply {
-            val email = edtEmail.text.toString().trim()
+            val input = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString()
+            val passwordPattern = ErrorMessage.PASSWORD_PATTERN.toRegex()
+            val isEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
+            val isPhone = android.util.Patterns.PHONE.matcher(input).matches() && input.length >= 10
 
-            if (email.isEmpty()) {
+            if (input.isEmpty()) {
                 edtEmail.error = ErrorMessage.EMAIL_ERROR
                 edtEmail.requestFocus()
                 return false
@@ -121,8 +124,11 @@ class LoginFragment : Fragment() {
                 return false
             }
 
-            val passwordPattern =
-                ErrorMessage.PASSWORD_PATTERN.toRegex()
+            if (!isEmail && !isPhone){
+                edtEmail.error = ErrorMessage.EMAIL_ERROR
+                edtEmail.requestFocus()
+                return false
+            }
 
             if (!password.matches(passwordPattern)) {
                 edtPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
@@ -132,7 +138,6 @@ class LoginFragment : Fragment() {
         }
         return true
     }
-
 
 
     override fun onDestroyView() {

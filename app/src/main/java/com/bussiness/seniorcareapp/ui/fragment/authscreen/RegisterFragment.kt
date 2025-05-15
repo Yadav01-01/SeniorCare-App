@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
@@ -11,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bussiness.seniorcareapp.R
@@ -36,21 +41,52 @@ class RegisterFragment : Fragment() {
         val text = getString(R.string.i_agree_to_the_terms_condition_and_privacy_policy)
         val spannableString = SpannableString(text)
 
-        // Apply purple color and underline to "Terms & condition"
-        val termsStart = text.indexOf("Terms & condition")
-        val termsEnd = termsStart + "Terms & condition".length
-        spannableString.setSpan(ForegroundColorSpan(resources.getColor(R.color.purple)), termsStart, termsEnd, 0)
-        spannableString.setSpan(UnderlineSpan(), termsStart, termsEnd, 0)
+        // ClickableSpan for "Terms & condition"
+        val termsText = "Terms & condition"
+        val termsStart = text.indexOf(termsText)
+        val termsEnd = termsStart + termsText.length
 
-        // Apply purple color and underline to "Privacy Policy"
-        val privacyStart = text.indexOf("Privacy Policy")
-        val privacyEnd = privacyStart + "Privacy Policy".length
-        spannableString.setSpan(ForegroundColorSpan(resources.getColor(R.color.purple)), privacyStart, privacyEnd, 0)
-        spannableString.setSpan(UnderlineSpan(), privacyStart, privacyEnd, 0)
+        val termsClickable = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.putExtra("aboutUs","Terms & condition")
+                startActivity(intent)
+            }
 
-        // Set the formatted text to the TextView using ViewBinding
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true
+                ds.color = resources.getColor(R.color.purple)
+            }
+        }
+
+        // ClickableSpan for "Privacy Policy"
+        val privacyText = "Privacy Policy"
+        val privacyStart = text.indexOf(privacyText)
+        val privacyEnd = privacyStart + privacyText.length
+
+        val privacyClickable = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.putExtra("aboutUs","Privacy Policy")
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true
+                ds.color = resources.getColor(R.color.purple)
+            }
+        }
+
+        // Apply spans
+        spannableString.setSpan(termsClickable, termsStart, termsEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(privacyClickable, privacyStart, privacyEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        // Set text and enable link clicks
         binding.checkbox.text = spannableString
-        sessionManager = SessionManager(requireContext())
+        binding.checkbox.movementMethod = LinkMovementMethod.getInstance()
+        //        binding.checkbox.highlightColor = Color.TRANSPARENT // Optional: remove background color when clicked
 
         return binding.root
     }
@@ -58,6 +94,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sessionManager = SessionManager(requireContext())
         clickListener()
     }
 
@@ -115,6 +152,10 @@ class RegisterFragment : Fragment() {
 
     private fun dataValidation() : Boolean {
         binding.apply {
+            val passwordPattern = ErrorMessage.PASSWORD_PATTERN.toRegex()
+            val isEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.text.toString().trim()).matches()
+            val isPhone = android.util.Patterns.PHONE.matcher(edtEmail.text.toString().trim()).matches() && edtEmail.text.toString().trim().length >= 10
+
             if (edtEmail.text.toString().trim().isEmpty()){
                 edtEmail.error = ErrorMessage.EMAIL_ERROR
                 edtEmail.requestFocus()
@@ -140,8 +181,6 @@ class RegisterFragment : Fragment() {
                 checkbox.requestFocus()
                 return false
             }
-            val passwordPattern =
-                ErrorMessage.PASSWORD_PATTERN.toRegex()
 
             if (!edtYourPassword.text.toString().trim().matches(passwordPattern)) {
                 edtYourPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
@@ -151,6 +190,11 @@ class RegisterFragment : Fragment() {
             if (!edtCnfPassword.text.toString().trim().matches(passwordPattern)) {
                 edtCnfPassword.error = ErrorMessage.PASSWORD_PATTERN_ERROR
                 edtCnfPassword.requestFocus()
+                return false
+            }
+            if (!isEmail && !isPhone){
+                edtEmail.error = ErrorMessage.EMAIL_ERROR
+                edtEmail.requestFocus()
                 return false
             }
         }

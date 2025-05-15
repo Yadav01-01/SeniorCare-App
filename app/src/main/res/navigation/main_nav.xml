@@ -34,7 +34,11 @@
         android:id="@+id/aboutUsFragment"
         android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.AboutUsFragment"
         android:label="fragment_about_us"
-        tools:layout="@layout/fragment_about_us" />
+        tools:layout="@layout/fragment_about_us">
+        <argument
+            android:name="aboutUs"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
         android:name="com.bussiness.seniorcareapp.ui.fragment.sidemenu.ContactUsFragment"

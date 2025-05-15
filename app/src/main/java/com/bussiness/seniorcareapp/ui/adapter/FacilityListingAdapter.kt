@@ -3,8 +3,10 @@ package com.bussiness.seniorcareapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
+import com.bussiness.seniorcareapp.R
 import com.bussiness.seniorcareapp.data.model.Facility
 import com.bussiness.seniorcareapp.databinding.ItemSavedFacilitiesBinding
 
@@ -23,6 +25,12 @@ class FacilityListingAdapter(
             binding.servicesTxt.text = facility.services
             binding.priceTxt.text = facility.price
             binding.ratingCard.visibility = View.VISIBLE
+            binding.fromTxt.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+            binding.priceTxt.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+            binding.fromTxt.textSize = 12F
+            binding.priceTxt.textSize = 14F
+
+
 
 
             val color = if (facility.isBookmarked) "#EA5B60" else "#FFFFFF"

@@ -166,7 +166,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_40sdp"
                                 android:paddingBottom="@dimen/_4sdp"
-                                android:paddingStart="0dp"/>
+                                android:paddingStart="@dimen/_2sdp"/>
 
                             <!-- End icon (edit pen) -->
                             <ImageView
@@ -241,7 +241,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_50sdp"
                                 android:paddingBottom="@dimen/_4sdp"
-                                android:paddingStart="0dp"/>
+                                android:paddingStart="@dimen/_2sdp"/>
 
                             <!-- End icon (edit pen) -->
                             <androidx.appcompat.widget.AppCompatButton
@@ -322,7 +322,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingEnd="@dimen/_50sdp"
                                 android:paddingBottom="@dimen/_4sdp"
-                                android:paddingStart="0dp"/>
+                                android:paddingStart="@dimen/_2sdp"/>
 
                             <!-- End icon (edit pen) -->
                             <androidx.appcompat.widget.AppCompatButton
@@ -403,7 +403,7 @@
                                 android:paddingTop="2dp"
                                 android:paddingBottom="@dimen/_4sdp"
                                 android:paddingEnd="@dimen/_40sdp"
-                                android:paddingStart="0dp"/>
+                                android:paddingStart="@dimen/_2sdp"/>
 
                             <!-- End icon (edit pen) -->
                             <ImageView

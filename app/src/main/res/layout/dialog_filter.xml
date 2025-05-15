@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="@dimen/_10sdp"
     android:background="@drawable/dialog_bg"
     android:orientation="vertical"
-    android:padding="@dimen/_15sdp">
+    android:padding="@dimen/_10sdp">
 
     <!-- Cross Icon -->
     <com.google.android.material.imageview.ShapeableImageView
@@ -132,6 +132,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins"
+            android:typeface="monospace"
             android:text="@string/price_range_from_5000_to_100000"
             android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />

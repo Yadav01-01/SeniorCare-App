@@ -21,7 +21,7 @@
         android:layout_above="@+id/tabIndicator"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_108sdp"
+        android:layout_marginBottom="@dimen/_110sdp"
         android:orientation="horizontal" />
 
     <com.google.android.material.tabs.TabLayout

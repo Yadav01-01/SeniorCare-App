@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="LOREM IPSUM"
                 android:textStyle="bold"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/purple"
                 android:textSize="@dimen/_19ssp"
                 android:layout_marginTop="@dimen/_48sdp"

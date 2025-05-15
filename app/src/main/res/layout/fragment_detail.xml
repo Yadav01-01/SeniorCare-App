@@ -234,7 +234,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_160sdp"
+                        android:layout_width="@dimen/_150sdp"
                         android:layout_height="@dimen/_110sdp"
                         android:src="@drawable/img_2"
                         android:scaleType="centerCrop"
@@ -337,6 +337,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/read_more"
                         android:textSize="@dimen/_9ssp"
+                        android:fontFamily="@font/poppins"
                         android:textColor="#EA5B60"
                         android:layout_gravity="end"
                         android:textStyle="bold"/>

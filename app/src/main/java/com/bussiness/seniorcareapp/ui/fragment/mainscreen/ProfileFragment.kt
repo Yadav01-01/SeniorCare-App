@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -79,6 +80,13 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            setEditMode(edtEmail, false)
+            setEditMode(edtPhone, false)
+            setEditMode(edtName, false)
+            setEditMode(edtLocation, false)
+        }
+
         setupClickListeners()
     }
 
@@ -115,11 +123,18 @@ class ProfileFragment : Fragment() {
         editIcon.visibility = visibility
         locationEditIcon.visibility = visibility
 
-        edtEmail.isEnabled = enable
-        edtPhone.isEnabled = enable
-        edtName.isEnabled = enable
-        edtLocation.isEnabled = enable
+        setEditMode(edtEmail, enable)
+        setEditMode(edtPhone, enable)
+        setEditMode(edtName, enable)
+        setEditMode(edtLocation, enable)
     }
+
+    private fun setEditMode(editText: EditText, enable: Boolean) {
+        editText.isEnabled = enable
+        editText.isFocusable = enable
+        editText.isFocusableInTouchMode = enable
+    }
+
 
     private fun checkPermissionsAndOpenPicker() {
         val requiredPermissions = mutableListOf<String>().apply {

@@ -90,8 +90,7 @@
                     android:text="@string/email_phone_number"
                     android:layout_gravity="start"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp"/>
 
@@ -115,8 +114,7 @@
                     android:text="@string/create_password"
                     android:layout_gravity="start"
                     android:layout_marginTop="15dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp"/>
 
@@ -162,8 +160,7 @@
                     android:text="@string/confirm_password"
                     android:layout_gravity="start"
                     android:layout_marginTop="15dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp"/>
 
@@ -240,6 +237,7 @@
                         android:text="@string/already_you_have_an_account"
                         android:textColor="@color/black"
                         android:fontFamily="@font/poppins"
+                        android:textStyle="bold"
                         android:textSize="@dimen/_8ssp"/>
 
                     <com.google.android.material.textview.MaterialTextView
@@ -250,12 +248,11 @@
                         android:textColor="@color/black"
                         android:fontFamily="@font/poppins"
                         android:paddingStart="5dp"
+                        android:textStyle="bold"
                         android:paddingEnd="0dp"
                         android:textSize="@dimen/_9ssp"/>
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

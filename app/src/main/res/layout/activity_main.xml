@@ -193,6 +193,7 @@
         android:layout_height="match_parent"
         app:itemTextColor="@color/black"
         android:layout_gravity="start"
+        style="@style/menuText"
         app:menu="@menu/drawer_menu"
         app:itemIconTint="@color/purple"
         app:itemTextAppearance="@style/NavDrawerTextStyle"

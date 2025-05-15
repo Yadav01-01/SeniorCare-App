@@ -37,6 +37,14 @@ class AuthActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         val targetFragment = intent.getStringExtra("targetFragment")
+        val backNav = intent.getStringExtra("backNav")
+
+        if (backNav == "Terms & condition") {
+            navController.navigate(R.id.registerFragment)
+        } else if (backNav == "Privacy Policy") {
+            navController.navigate(R.id.registerFragment)
+        }
+
 
         if (targetFragment == "signup") {
             navController.navigate(R.id.registerFragment)

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="15dp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
     android:background="@drawable/dialog_bg"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="@dimen/_25sdp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/crossIcon"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/tick_ic"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_10sdp"
         style="@style/RoundedImage"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -28,11 +28,11 @@
         android:layout_height="wrap_content"
         android:text="@string/login_successfully"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_16ssp"
         android:fontFamily="@font/montserrat"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="@dimen/_10sdp"/>
     
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/okayBtn"
@@ -43,8 +43,8 @@
         android:textAllCaps="false"
         android:fontFamily="@font/poppins"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="@color/white"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="@dimen/_15sdp"/>
 
 </LinearLayout>

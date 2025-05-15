@@ -18,8 +18,9 @@
         android:textAlignment="center"
         android:text="@string/compare_text"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_11ssp"
         android:textStyle="bold"
         android:padding="@dimen/_30sdp"
+        android:fontFamily="@font/poppins"
         android:background="@android:color/transparent" />
 </FrameLayout>

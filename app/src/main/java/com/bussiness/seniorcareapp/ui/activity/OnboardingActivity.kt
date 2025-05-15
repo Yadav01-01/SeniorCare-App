@@ -113,7 +113,7 @@ class OnboardingActivity : AppCompatActivity() {
             dotImage.setImageResource(if (i == 0) R.drawable.selected_ic_home else R.drawable.ic_home)
 
             val dotLine = view.findViewById<View>(R.id.dot)
-            dotLine.visibility = if (i < 2) View.VISIBLE else View.INVISIBLE
+            dotLine.visibility = if (i < totalSteps - 1) View.VISIBLE else View.INVISIBLE
 
             indicatorLayout.addView(view)
         }

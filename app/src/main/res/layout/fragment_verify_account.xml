@@ -61,9 +61,8 @@
                 android:text="@string/enter_otp_one_time_password"
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textStyle="bold"
                 android:layout_marginStart="@dimen/_3sdp"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp"/>
 

@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
     android:background="@color/white">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -21,9 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/senior_living_communities"
-        android:textSize="18sp"
+        android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/poppins"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textStyle="bold"/>
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/discover_a_variety_of_senior_living_communities_that_offer_a_comfortable_and_engaging_lifestyle"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
@@ -41,12 +41,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/independent_living"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/black"
         android:layout_marginTop="5dp"
-        android:drawablePadding="10dp"
-        android:layout_marginStart="8dp"
+        android:drawablePadding="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_6sdp"
         app:drawableStartCompat="@drawable/baseline_circle_24" />
 
     <TextView
@@ -54,12 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/assisted_living"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/black"
-        android:layout_marginTop="5dp"
-        android:drawablePadding="10dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:drawablePadding="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_6sdp"
         app:drawableStartCompat="@drawable/baseline_circle_24"/>
 
     <TextView
@@ -67,12 +67,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/memory_care"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/black"
-        android:layout_marginTop="5dp"
-        android:drawablePadding="10dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:drawablePadding="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_6sdp"
         app:drawableStartCompat="@drawable/baseline_circle_24"/>
 
     <TextView
@@ -80,12 +80,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/continuing_care_retirement_communities"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/poppins"
         android:textColor="@color/black"
-        android:layout_marginTop="5dp"
-        android:drawablePadding="10dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:drawablePadding="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_6sdp"
         app:drawableStartCompat="@drawable/baseline_circle_24"/>
 
     <TextView
@@ -93,10 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/find_the_perfect_community_that_matches_your_lifestyle_and_needs"
-        android:textSize="15sp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins"
         android:textColor="@color/purple"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="@dimen/_3sdp"/>
 
 </LinearLayout>

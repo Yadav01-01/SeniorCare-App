@@ -5,6 +5,7 @@
     android:layout_margin="8dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -29,8 +30,8 @@
                 android:layout_toStartOf="@id/imgExpand"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins"
-                android:paddingEnd="8dp"
                 android:paddingStart="0dp"
+                android:paddingEnd="8dp"
                 android:text="@string/how_do_i_know_if_my_loved_one_needs_home_care_services"
                 android:textColor="@color/black"
                 android:textSize="11sp"
@@ -61,12 +62,14 @@
             android:visibility="gone" />
 
 
-
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#EAEAEA"/>
+        android:background="#EAEAEA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
