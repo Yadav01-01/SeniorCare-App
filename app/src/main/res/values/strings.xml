@@ -153,7 +153,7 @@
     <string name="deleting_your_account">Deleting your account?</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
     <string name="delete">Delete</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="download_brochure">Download Brochure</string>
     <string name="upgrade">Upgrade</string>
     <string name="change_facility_">Change Facility</string>
@@ -193,4 +193,5 @@
     <string name="rs_5000">Rs. 5000</string>
     <string name="to">to</string>
     <string name="rs_100000">Rs. 100000</string>
+    <string name="register_s">Register</string>
 </resources>

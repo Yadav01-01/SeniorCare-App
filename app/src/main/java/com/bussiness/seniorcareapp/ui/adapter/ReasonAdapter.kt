@@ -10,7 +10,8 @@ import com.bussiness.seniorcareapp.databinding.ItemDeleteFeedbackBinding
 class ReasonAdapter(
     private val reasonList: List<String>,
     private val onItemClick: (String) -> Unit,
-    private val onOtherItemClick: (String) -> Unit
+    private val onOtherItemClick: (Boolean) -> Unit, // pass expanded state
+    private var isOtherExpanded: Boolean = false
 ) : RecyclerView.Adapter<ReasonAdapter.ReasonViewHolder>() {
 
     inner class ReasonViewHolder(private val binding: ItemDeleteFeedbackBinding) :
@@ -19,22 +20,26 @@ class ReasonAdapter(
         fun bind(reason: String) {
             binding.reasonTxt.text = reason
 
+            if (reason.equals("other", ignoreCase = true)) {
+                binding.arrowIc.setImageResource(
+                    if (isOtherExpanded) R.drawable.arrow_down else R.drawable.arrow_right
+                )
+            }
+
             binding.root.setOnClickListener {
                 if (reason.equals("other", ignoreCase = true)) {
-                    onOtherItemClick(reason)
+                    isOtherExpanded = !isOtherExpanded
+                    notifyItemChanged(adapterPosition)
+                    onOtherItemClick(isOtherExpanded) // Notify fragment of new state
                 } else {
                     onItemClick(reason)
                 }
             }
-            if (reason.equals("other", ignoreCase = true)){
-                binding.bottomLine.visibility = View.GONE
-            }else{
-                binding.bottomLine.visibility = View.VISIBLE
-            }
 
+            binding.bottomLine.visibility =
+                if (reason.equals("other", ignoreCase = true)) View.GONE else View.VISIBLE
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReasonViewHolder {
         val binding = ItemDeleteFeedbackBinding.inflate(LayoutInflater.from(parent.context), parent, false)

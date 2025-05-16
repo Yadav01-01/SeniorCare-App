@@ -122,12 +122,11 @@
                         android:hint="@string/please_share_your_feedback_optional"
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
-                        android:lines="8"
                         android:fontFamily="@font/poppins"
                         android:padding="@dimen/_9sdp"
                         android:background="@color/white"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_8ssp"
+                        android:textSize="@dimen/_10ssp"
                         android:textColorHint="#333333" />
 
                 </com.google.android.material.card.MaterialCardView>

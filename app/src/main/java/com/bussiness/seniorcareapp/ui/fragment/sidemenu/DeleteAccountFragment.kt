@@ -21,6 +21,7 @@ class DeleteAccountFragment : Fragment() {
     private var _binding: FragmentDeleteAccountBinding? = null
     private val binding get() = _binding!!
     private lateinit var deleteReasonAdapter: ReasonAdapter
+    private var isOtherExpanded = false
     private val reasonList = listOf(
         "I don’t want to use Home Care anymore",
         "I’m using a different account",
@@ -44,20 +45,23 @@ class DeleteAccountFragment : Fragment() {
         clickListeners()
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         binding.deleteRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(requireContext())
             deleteReasonAdapter = ReasonAdapter(
                 reasonList,
-                onOtherItemClick = {
-                    binding.feedbackCard.visibility = View.VISIBLE
-                    binding.deleteAccountBtn.visibility = View.VISIBLE
+                onItemClick = { selectedReason -> dialogDelete() },
+                onOtherItemClick = { expanded ->
+                    isOtherExpanded = expanded
+                    binding.feedbackCard.visibility = if (isOtherExpanded) View.VISIBLE else View.GONE
+                    binding.deleteAccountBtn.visibility = if (isOtherExpanded) View.VISIBLE else View.GONE
                 },
-                onItemClick = { selectedReason -> dialogDelete() }
+                isOtherExpanded = isOtherExpanded
             )
             adapter = deleteReasonAdapter
         }
     }
+
 
     private fun clickListeners() {
         binding.apply {
